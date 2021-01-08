@@ -24,7 +24,6 @@ export default function InputAutocomplete({ id }: PropTypes) {
 
     const { data: suggestions = [] } = useAutocomplete(doFetch, term)
     const { data: currentCoordsLocation } = useCoords(coords?.coords)
-
     
     useEffect(() => {
         if (currentCoordsLocation && coords?.id === id) {

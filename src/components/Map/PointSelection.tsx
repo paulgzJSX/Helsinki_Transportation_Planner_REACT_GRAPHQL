@@ -10,13 +10,14 @@ const actions = [
     { icon: <RoomIcon />, name: 'Select origin', id: 'origin' },
 ]
 
-export default function PointSelection({ setAllowCoords }: any) {
+export default function PointSelection({ setAllowCoords, setSelectedCoords }: any) {
     const [open, setOpen] = useState(false)
     const classes = useSpeedDialStyles();
 
     const handleClick = (_: any, id: string): void => {
         setOpen(false)
         setAllowCoords({ id, state: true })
+        setSelectedCoords(null)
     }
 
     return (

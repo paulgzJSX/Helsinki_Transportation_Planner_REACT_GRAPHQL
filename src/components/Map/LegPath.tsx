@@ -30,7 +30,6 @@ export default function LegPath({ selectedLeg }: any) {
                     {selectedLeg?.mode} route {selectedLeg?.trip?.routeShortName} from {selectedLeg?.from?.stop?.name.toUpperCase()} to {selectedLeg?.to?.name.toUpperCase()}
                 </Tooltip>
             </Polyline>
-
         </>
     )
 }

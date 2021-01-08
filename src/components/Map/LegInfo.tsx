@@ -20,8 +20,8 @@ export default function LegInfo({ selectedLeg }: any) {
     return (
         <div className='leg-info'>
             <Alert style={{ backgroundColor: alertColor }} icon={defineIcon(selectedLeg.mode)} variant="filled" severity="info">
-                <AlertTitle>{selectedLeg.mode} {selectedLeg.trip.routeShortName} - Scheduled {convertTime(new Date(selectedLeg.startTime))} - {convertTime(new Date(selectedLeg.endTime))}</AlertTitle>
-                Board at <strong>{selectedLeg.from.stop.name.toUpperCase()}</strong>, get off at <strong>{selectedLeg.to.name.toUpperCase()}</strong>
+                <AlertTitle>{selectedLeg.mode} {selectedLeg.trip.routeShortName} / {convertTime(new Date(selectedLeg.startTime))} - {convertTime(new Date(selectedLeg.endTime))}</AlertTitle>
+                dep. <strong>{selectedLeg.from.stop.name.toUpperCase()}</strong> - arr. <strong>{selectedLeg.to.name.toUpperCase()}</strong>
             </Alert>
         </div>
     );

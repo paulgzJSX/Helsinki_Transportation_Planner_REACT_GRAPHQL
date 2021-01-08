@@ -21,6 +21,7 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 export default function Map() {
     const [allowCoords, setAllowCoords] = useState()
+    const [selectedCoords, setSelectedCoords] = useState(null)
     const { selectedLeg, formData } = useContext(RouteContext)
 
     useEffect(() => {
@@ -35,11 +36,17 @@ export default function Map() {
                 zoom={mapSettings.zoom}
                 scrollWheelZoom={true}
                 maxBounds={mapSettings.maxBounds}
-            >   
+            >
                 <TileLayerEl />
-                <LegPath selectedLeg={selectedLeg} />
-                {allowCoords?.state && <GetCurrentCoords id={allowCoords?.id} />}
-                <PointSelection setAllowCoords={setAllowCoords} />
+                {selectedLeg && <LegPath selectedLeg={selectedLeg} />}
+                {allowCoords?.state &&
+                    <GetCurrentCoords
+                        id={allowCoords?.id}
+                        setSelectedCoords={setSelectedCoords}
+                        selectedCoords={selectedCoords} />}
+                <PointSelection 
+                    setAllowCoords={setAllowCoords}
+                    setSelectedCoords={setSelectedCoords} />
                 {selectedLeg && <LegInfo selectedLeg={selectedLeg} />}
             </MapContainer>
         </div>

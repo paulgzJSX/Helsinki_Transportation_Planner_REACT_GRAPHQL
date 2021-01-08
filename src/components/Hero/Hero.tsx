@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { giItinerary } from '../../components/'
+import { Itinerary } from '../../components/'
 import ChristmasHat from '../../images/christmas_hat.svg'
 import { useItinerary } from '../../hooks/useItinerary';
 import { RouteContext } from '../../context/RouteContext'
