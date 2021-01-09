@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { convertTime } from '../../helpers/helpers'
 import { CircleMarker, Tooltip } from "react-leaflet";
-import { mapSettings } from '../../constants/mapConstants'
 import { RouteContext } from "../../context/RouteContext";
 
 interface IProps {
@@ -21,7 +20,7 @@ export default function CircleMarkerEl({ coords, type, color }: IProps) {
     
 
     return (
-        <CircleMarker center={coords} pathOptions={color} radius={mapSettings.circleMarkerRadius}>
+        <CircleMarker center={coords} pathOptions={color} radius={3}>
             <Tooltip permanent>
                 {stop} {prefix} {time}
             </Tooltip>

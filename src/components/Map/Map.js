@@ -1,10 +1,9 @@
 import { useContext } from 'react'
 import { LegPath, GetCurrentCoords } from '../../components'
 import { RouteContext } from "../../context/RouteContext"
-import { mapSettings } from '../../constants/mapConstants'
 import PointSelection from '../Map/PointSelection'
 
-import { MapContainer, TileLayer, useMap } from "react-leaflet"
+import { MapContainer, TileLayer } from "react-leaflet"
 import L from 'leaflet'
 import icon from 'leaflet/dist/images/marker-icon.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
@@ -17,11 +16,6 @@ let DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-function MoveMap() {
-    const map = useMap()
-    map.zoomControl.setPosition('bottomright')
-    return null
-}
 
 export default function Map() {
     const { selectedLeg, allowCoords } = useContext(RouteContext)
@@ -30,10 +24,10 @@ export default function Map() {
         <div id="mapid">
             <MapContainer
                 style={{ height: '100%', width: '100%' }}
-                center={mapSettings.centerCoords}
-                zoom={mapSettings.zoom}
+                center={[60.19, 24.94]}
+                zoom={10}
                 scrollWheelZoom={true}
-                maxBounds={mapSettings.maxBounds}
+                maxBounds={[[59.9, 24.3],[60.45, 25.5]]}
             >
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -41,7 +35,6 @@ export default function Map() {
                 />
                 {selectedLeg && <LegPath selectedLeg={selectedLeg} />}
                 {allowCoords?.state && <GetCurrentCoords />}
-                <MoveMap />
                 <PointSelection />
             </MapContainer>
         </div>

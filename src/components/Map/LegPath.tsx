@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Polyline, Tooltip, useMap } from "react-leaflet";
-import { Alert, AlertTitle } from '@material-ui/lab'
+import { Alert } from '@material-ui/lab'
 import CircleMarkerEl from '../Map/CircleMarkerEl'
 import { setColor, defineColor } from '../../helpers/helpers'
 import { defineIcon } from '../Itineraries/Leg/LegElements'
@@ -17,8 +17,8 @@ export default function LegPath({ selectedLeg }: any) {
     useEffect(() => {
         map.fitBounds([startPoints, endPoints])
     }, [startPoints, endPoints])
- 
-    
+
+
     useEffect(() => {
         setColor(selectedLeg?.mode, setPathColor)
 
@@ -41,8 +41,7 @@ export default function LegPath({ selectedLeg }: any) {
             </Polyline>
             <div className='leg-info'>
                 <Alert style={{ backgroundColor: defineColor(selectedLeg.mode) }} icon={defineIcon(selectedLeg.mode)} variant="filled" severity="info">
-                    <AlertTitle>{selectedLeg.mode} {selectedLeg.trip.routeShortName}</AlertTitle>
-                dep. <strong>{selectedLeg.from.stop.name.toUpperCase()}</strong> - arr. <strong>{selectedLeg.to.name.toUpperCase()}</strong>
+                    {selectedLeg.mode} {selectedLeg.trip.routeShortName}
                 </Alert>
             </div>
         </>
