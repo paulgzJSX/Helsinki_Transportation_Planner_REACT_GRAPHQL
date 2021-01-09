@@ -12,9 +12,6 @@ export default function GetCurrentCoords(): any {
 
     const { data: location } = useCoords(selectedCoords)
 
-    console.log(location);
-
-
     const map = useMapEvent('click', e => {
         if (!isButtonFocused) {
             setSelectedCoords({ lat: e.latlng.lat, lon: e.latlng.lng })
