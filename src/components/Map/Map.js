@@ -4,7 +4,7 @@ import { RouteContext } from "../../context/RouteContext"
 import { mapSettings } from '../../constants/mapConstants'
 import PointSelection from '../Map/PointSelection'
 
-import { MapContainer, TileLayer, useMapEvent } from "react-leaflet"
+import { MapContainer, TileLayer, useMap } from "react-leaflet"
 import L from 'leaflet'
 import icon from 'leaflet/dist/images/marker-icon.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
@@ -18,10 +18,8 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 function MoveMap() {
-    const map = useMapEvent('viewreset', () => {
-        map.flyToBounds([59.9, 24.3],
-            [60.45, 25.5])
-    })
+    const map = useMap()
+    map.zoomControl.setPosition('bottomright')
     return null
 }
 
