@@ -1,16 +1,30 @@
-import { Popup, CircleMarker } from "react-leaflet";
+import { useContext } from "react";
+import { convertTime } from '../../helpers/helpers'
+import { CircleMarker, Tooltip } from "react-leaflet";
 import { mapSettings } from '../../constants/mapConstants'
+import { RouteContext } from "../../context/RouteContext";
 
 interface IProps {
     coords: any,
-    color: any,
-    popup: string
+    type: string,
+    color: any
 }
 
-export default function CircleMarkerEl({ coords, color, popup }: IProps) {
+export default function CircleMarkerEl({ coords, type, color }: IProps) {
+    const { selectedLeg } = useContext(RouteContext)
+
+    const stop = type === 'departure' ? selectedLeg?.from?.stop?.name : selectedLeg?.to?.name
+    const prefix = type === 'departure' ? 'dep' : 'arr'
+    const time = type === 'departure'
+        ? convertTime(new Date(selectedLeg.startTime))
+        : convertTime(new Date(selectedLeg.endTime))
+    
+
     return (
         <CircleMarker center={coords} pathOptions={color} radius={mapSettings.circleMarkerRadius}>
-            <Popup>{popup}</Popup>
+            <Tooltip permanent>
+                {stop} {prefix} {time}
+            </Tooltip>
         </CircleMarker>
     )
 }

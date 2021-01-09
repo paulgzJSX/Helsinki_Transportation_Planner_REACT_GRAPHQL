@@ -4,7 +4,6 @@ export { default as Input } from './Input/Input'
 export { default as Map } from './Map/Map'
 export { default as Itinerary } from './Itineraries/Itinerary/Itinerary'
 
-export { default as TileLayerEl } from './Map/TileLayerEl'
 export { default as LegPath } from './Map/LegPath'
 export { default as GetCurrentCoords } from './Map/GetCurrentCoords'
 export { default as CircleMarkerEl } from './Map/CircleMarkerEl'

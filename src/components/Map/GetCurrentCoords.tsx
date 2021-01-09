@@ -6,9 +6,9 @@ import Button from '@material-ui/core/Button';
 import { Marker, Tooltip } from "react-leaflet"
 
 
-export default function GetCurrentCoords({ id, selectedCoords, setSelectedCoords }: any): any {
+export default function GetCurrentCoords(): any {
     const [isButtonFocused, setIsButtonFocused] = useState(false)
-    const { setCoords } = useContext(RouteContext)
+    const { setCoords, allowCoords, selectedCoords, setSelectedCoords } = useContext(RouteContext)
 
     const { data: location } = useCoords(selectedCoords)
 
@@ -23,7 +23,7 @@ export default function GetCurrentCoords({ id, selectedCoords, setSelectedCoords
     })
 
     const handleClick = () => {
-        setCoords({ id, coords: selectedCoords })
+        setCoords({ id: allowCoords?.id, coords: selectedCoords })
         setSelectedCoords(null)
         setIsButtonFocused(false)
     }
@@ -41,7 +41,7 @@ export default function GetCurrentCoords({ id, selectedCoords, setSelectedCoords
                     onFocus={() => setIsButtonFocused(true)}
                     onBlur={() => setIsButtonFocused(true)}
                 >
-                    Confirm {id}
+                    Confirm {allowCoords.id}
                 </Button>
             </div>
             {selectedCoords &&

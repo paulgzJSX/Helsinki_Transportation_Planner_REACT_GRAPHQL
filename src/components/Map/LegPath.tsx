@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Polyline, Tooltip } from "react-leaflet";
+import { Alert, AlertTitle } from '@material-ui/lab'
 import CircleMarkerEl from '../Map/CircleMarkerEl'
-import { setColor } from '../../helpers/helpers'
+import { setColor, convertTime, defineColor } from '../../helpers/helpers'
+import { defineIcon } from '../Itineraries/Leg/LegElements'
 
 
 export default function LegPath({ selectedLeg }: any) {
@@ -23,13 +25,19 @@ export default function LegPath({ selectedLeg }: any) {
 
     return (
         <>
-            <CircleMarkerEl coords={startPoints} color={pathColor} popup={selectedLeg?.from?.stop?.name} />
-            <CircleMarkerEl coords={endPoints} color={pathColor} popup={selectedLeg?.to?.name} />
+            <CircleMarkerEl coords={startPoints} type='departure' color={pathColor} />
+            <CircleMarkerEl coords={endPoints} type='arrival' color={pathColor} />
             <Polyline weight={3} smoothFactor={1} pathOptions={pathColor} positions={points}>
                 <Tooltip>
                     {selectedLeg?.mode} route {selectedLeg?.trip?.routeShortName} from {selectedLeg?.from?.stop?.name.toUpperCase()} to {selectedLeg?.to?.name.toUpperCase()}
                 </Tooltip>
             </Polyline>
+            <div className='leg-info'>
+                <Alert style={{ backgroundColor: defineColor(selectedLeg.mode) }} icon={defineIcon(selectedLeg.mode)} variant="filled" severity="info">
+                    <AlertTitle>{selectedLeg.mode} {selectedLeg.trip.routeShortName}</AlertTitle>
+                dep. <strong>{selectedLeg.from.stop.name.toUpperCase()}</strong> - arr. <strong>{selectedLeg.to.name.toUpperCase()}</strong>
+                </Alert>
+            </div>
         </>
     )
 }

@@ -22,7 +22,7 @@ export interface IRouteContextProps {
     setDisplayItineraries?: (displayItineraries: boolean) => void,
     points: [Number],
     setPoints?: (points: [Number]) => void,
-    selectedLeg: {},
+    selectedLeg: any,
     setSelectedLeg: (selectedLeg: {}) => void,
     coords: {
         id: string,
@@ -31,7 +31,11 @@ export interface IRouteContextProps {
             lon: number
         }
     },
-    setCoords: (coords: {}) => void
+    setCoords: (coords: {}) => void,
+    allowCoords: any,
+    setAllowCoords: (allowCoords: any) => void,
+    selectedCoords: any,
+    setSelectedCoords: (selectedCoords: any) => void
 }
 
 export interface IStop {

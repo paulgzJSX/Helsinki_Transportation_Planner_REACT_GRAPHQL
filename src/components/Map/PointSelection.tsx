@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { SpeedDial, SpeedDialIcon, SpeedDialAction } from '@material-ui/lab'
 import RoomIcon from '@material-ui/icons/Room';
 import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
 import { useSpeedDialStyles } from '../../styleHooks/useStyle'
+import { RouteContext } from '../../context/RouteContext';
 
 
 const actions = [
@@ -10,8 +11,9 @@ const actions = [
     { icon: <RoomIcon />, name: 'Select origin', id: 'origin' },
 ]
 
-export default function PointSelection({ setAllowCoords, setSelectedCoords }: any) {
+export default function PointSelection() {
     const [open, setOpen] = useState(false)
+    const { setAllowCoords, setSelectedCoords } = useContext(RouteContext)
     const classes = useSpeedDialStyles();
 
     const handleClick = (_: any, id: string): void => {

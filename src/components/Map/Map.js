@@ -1,11 +1,10 @@
-import { useState, useContext, useEffect } from 'react'
-import { TileLayerEl, LegPath, GetCurrentCoords } from '../../components'
+import { useContext } from 'react'
+import { LegPath, GetCurrentCoords } from '../../components'
 import { RouteContext } from "../../context/RouteContext"
 import { mapSettings } from '../../constants/mapConstants'
 import PointSelection from '../Map/PointSelection'
-import LegInfo from '../Map/LegInfo'
 
-import { MapContainer } from "react-leaflet"
+import { MapContainer, TileLayer, useMapEvent } from "react-leaflet"
 import L from 'leaflet'
 import icon from 'leaflet/dist/images/marker-icon.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
@@ -18,15 +17,16 @@ let DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
+function MoveMap() {
+    const map = useMapEvent('viewreset', () => {
+        map.flyToBounds([59.9, 24.3],
+            [60.45, 25.5])
+    })
+    return null
+}
 
 export default function Map() {
-    const [allowCoords, setAllowCoords] = useState()
-    const [selectedCoords, setSelectedCoords] = useState(null)
-    const { selectedLeg, formData } = useContext(RouteContext)
-
-    useEffect(() => {
-        formData?.origin && formData?.destination && setAllowCoords({ state: false })
-    }, [formData])
+    const { selectedLeg, allowCoords } = useContext(RouteContext)
 
     return (
         <div id="mapid">
@@ -37,17 +37,14 @@ export default function Map() {
                 scrollWheelZoom={true}
                 maxBounds={mapSettings.maxBounds}
             >
-                <TileLayerEl />
+                <TileLayer
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
                 {selectedLeg && <LegPath selectedLeg={selectedLeg} />}
-                {allowCoords?.state &&
-                    <GetCurrentCoords
-                        id={allowCoords?.id}
-                        setSelectedCoords={setSelectedCoords}
-                        selectedCoords={selectedCoords} />}
-                <PointSelection 
-                    setAllowCoords={setAllowCoords}
-                    setSelectedCoords={setSelectedCoords} />
-                {selectedLeg && <LegInfo selectedLeg={selectedLeg} />}
+                {allowCoords?.state && <GetCurrentCoords />}
+                <MoveMap />
+                <PointSelection />
             </MapContainer>
         </div>
     )

@@ -28,7 +28,7 @@ export function defineWidth(startTime: Date, endTime: Date, duration: number) {
 }
 
 
-export function setColor(mode: string, fn: ({}) => void) {
+export function setColor(mode: string, fn: ({ }) => void) {
     switch (mode) {
         case 'BUS':
             fn({ color: '#007AC9' })
@@ -49,5 +49,19 @@ export function setColor(mode: string, fn: ({}) => void) {
         default:
             break;
     }
+}
+
+export function defineColor(mode: string) {
+    return mode === 'BUS'
+        ? '#007AC9'
+        : mode === 'TRAM'
+            ? '#00985F'
+            : mode === 'RAIL'
+                ? '#8C4799'
+                : mode === 'SUBWAY'
+                    ? '#FF6319'
+                    : mode === 'WAIT'
+                        ? '#fff'
+                        : 'lightgrey';
 }
 
