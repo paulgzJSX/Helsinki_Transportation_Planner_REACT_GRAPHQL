@@ -11,6 +11,7 @@ const RouteContextProvider: React.FC = ({ children }) => {
     const [coords, setCoords] = useState<any>({})
     const [allowCoords, setAllowCoords] = useState(null)
     const [selectedCoords, setSelectedCoords] = useState(null)
+    const [displayDrawer, setDisplayDrawer] = useState(false)
 
     useEffect(() => {
         if (!formData?.origin || !formData?.destination) setSelectedLeg(null)
@@ -25,7 +26,8 @@ const RouteContextProvider: React.FC = ({ children }) => {
             selectedLeg, setSelectedLeg,
             coords, setCoords,
             allowCoords, setAllowCoords,
-            selectedCoords, setSelectedCoords
+            selectedCoords, setSelectedCoords,
+            displayDrawer, setDisplayDrawer
         }}>
             {children}
         </RouteContext.Provider>

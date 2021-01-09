@@ -35,7 +35,9 @@ export interface IRouteContextProps {
     allowCoords: any,
     setAllowCoords: (allowCoords: any) => void,
     selectedCoords: any,
-    setSelectedCoords: (selectedCoords: any) => void
+    setSelectedCoords: (selectedCoords: any) => void,
+    displayDrawer: boolean,
+    setDisplayDrawer: (displayDrawer: boolean) => void
 }
 
 export interface IStop {

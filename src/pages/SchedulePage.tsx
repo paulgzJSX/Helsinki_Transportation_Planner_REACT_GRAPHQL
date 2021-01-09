@@ -7,6 +7,7 @@ import { useItinerary } from '../hooks/useItinerary'
 import { ItinerariesWrapper } from '../components/Hero/HeroElements'
 import { RouteContext } from '../context/RouteContext';
 import Tab from '../components/Tab/Tab'
+import Drawer from '../components/Drawer/Drawer'
 
 const useButtonStyle = makeStyles({
     root: { marginTop: '1rem' }
@@ -14,7 +15,7 @@ const useButtonStyle = makeStyles({
 
 export default function SchedulePage() {
     const classes = useButtonStyle();
-    const { formData } = useContext(RouteContext)
+    const { formData, displayDrawer } = useContext(RouteContext)
     const [fetchItinerary, { loading, data }] = useItinerary()
 
     return (
@@ -47,6 +48,7 @@ export default function SchedulePage() {
                     </div>
                     {/* <Map /> */}
                 </div>
+                {displayDrawer && <Drawer />}
             </div>
         </div>
     )
