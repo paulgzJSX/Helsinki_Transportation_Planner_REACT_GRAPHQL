@@ -18,7 +18,7 @@ export default function LegPath({ selectedLeg }: any) {
         map.fitBounds([startPoints, endPoints])
     }, [startPoints, endPoints])
  
-
+    
     useEffect(() => {
         setColor(selectedLeg?.mode, setPathColor)
 
