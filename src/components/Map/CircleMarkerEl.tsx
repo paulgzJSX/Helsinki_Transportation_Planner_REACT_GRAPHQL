@@ -17,7 +17,6 @@ export default function CircleMarkerEl({ coords, type, color }: IProps) {
     const time = type === 'departure'
         ? convertTime(new Date(selectedLeg.startTime))
         : convertTime(new Date(selectedLeg.endTime))
-    
 
     return (
         <CircleMarker center={coords} pathOptions={color} radius={3}>
