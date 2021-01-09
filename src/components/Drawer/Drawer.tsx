@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -24,7 +23,6 @@ const useStyles = makeStyles({
 
 export default function TemporaryDrawer() {
     const classes = useStyles();
-    // const [state, setState] = React.useState(false);
     const { displayDrawer, setDisplayDrawer } = useContext(RouteContext)
 
     const toggleDrawer = (open: boolean) => (e: React.KeyboardEvent | React.MouseEvent) => {
@@ -67,7 +65,12 @@ export default function TemporaryDrawer() {
     );
 
     return (
-        <Drawer anchor={'right'} open={displayDrawer} onClose={toggleDrawer(false)}>
+        <Drawer
+            anchor={'right'}
+            open={displayDrawer}
+            onClose={toggleDrawer(false)}
+            transitionDuration={400}
+        >
             {list()}
         </Drawer>
     );

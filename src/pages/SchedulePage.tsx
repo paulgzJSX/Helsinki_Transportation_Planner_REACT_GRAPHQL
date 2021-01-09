@@ -48,7 +48,7 @@ export default function SchedulePage() {
                     </div>
                     {/* <Map /> */}
                 </div>
-                {displayDrawer && <Drawer />}
+                <Drawer />
             </div>
         </div>
     )
