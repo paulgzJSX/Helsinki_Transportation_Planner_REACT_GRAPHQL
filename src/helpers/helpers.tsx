@@ -28,7 +28,7 @@ export function defineWidth(startTime: Date, endTime: Date, duration: number) {
 }
 
 
-export function setColor(mode: string, fn: ({ }) => void) {
+export function setColor(mode: string, fn: ({}) => void) {
     switch (mode) {
         case 'BUS':
             fn({ color: '#007AC9' })
@@ -64,4 +64,3 @@ export function defineColor(mode: string) {
                         ? '#fff'
                         : 'lightgrey';
 }
-

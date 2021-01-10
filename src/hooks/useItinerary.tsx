@@ -32,7 +32,20 @@ const GET_ITINERARY = gql`
           },
           trip {
             tripHeadsign
-            routeShortName
+            routeShortName,
+            gtfsId,
+            stops {
+              id
+              name
+              code
+              desc
+              zoneId
+              wheelchairBoarding
+              vehicleMode
+              routes {
+                shortName
+              }
+            }
           },
           agency {
             gtfsId

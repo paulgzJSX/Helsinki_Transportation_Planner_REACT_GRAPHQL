@@ -1,14 +1,6 @@
 import React, { useContext } from 'react';
-import clsx from 'clsx';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import { RouteContext } from '../../context/RouteContext'
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';
@@ -23,7 +15,8 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         list: {
             width: 300,
-            paddingTop: '1rem'
+            paddingTop: '1rem',
+            overflowY: 'scroll'
         },
         missingOppositeContent: {
             '&:before': {
@@ -42,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function TemporaryDrawer() {
     const classes = useStyles();
-    const { displayDrawer, setDisplayDrawer } = useContext(RouteContext)
+    const { displayDrawer, setDisplayDrawer, selectedLeg } = useContext(RouteContext)
 
     const toggleDrawer = (open: boolean) => (e: React.KeyboardEvent | React.MouseEvent) => {
         if (
@@ -65,47 +58,21 @@ export default function TemporaryDrawer() {
         >
             <Timeline align='left'>
                 <Typography variant="h6" gutterBottom>
-                    h6. Heading
+                    {selectedLeg?.trip?.routeShortName}
                 </Typography>
-                <TimelineItem classes={{ root: classes.root, missingOppositeContent: classes.missingOppositeContent }}>
-                    <TimelineSeparator>
-                        <TimelineDot />
-                        <TimelineConnector className={classes.connector} />
-                    </TimelineSeparator>
-                    <TimelineContent>Eat</TimelineContent>
-                </TimelineItem>
-                <TimelineItem classes={{ root: classes.root, missingOppositeContent: classes.missingOppositeContent }}>
-                    <TimelineSeparator>
-                        <TimelineDot />
-                        <TimelineConnector className={classes.connector} />
-                    </TimelineSeparator>
-                    <TimelineContent>Code</TimelineContent>
-                </TimelineItem>
-                <TimelineItem classes={{ root: classes.root, missingOppositeContent: classes.missingOppositeContent }}>
-                    <TimelineSeparator>
-                        <TimelineDot />
-                        <TimelineConnector className={classes.connector} />
-                    </TimelineSeparator>
-                    <TimelineContent>Sleep</TimelineContent>
-                </TimelineItem>
+                {selectedLeg?.trip?.stops.map((stop: any) => (
+                    <TimelineItem
+                        key={stop.id}
+                        classes={{ root: classes.root, missingOppositeContent: classes.missingOppositeContent }}
+                    >
+                        <TimelineSeparator>
+                            <TimelineDot />
+                            <TimelineConnector className={classes.connector} />
+                        </TimelineSeparator>
+                        <TimelineContent>{stop.name}</TimelineContent>
+                    </TimelineItem>
+                ))}
             </Timeline>
-            {/* <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
-            <Divider />
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List> */}
         </div>
     );
 
