@@ -4,6 +4,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
 import Header from './components/Header/Header'
 import { HomePage, SchedulePage } from './pages/'
+import PlanningPage from './pages/PlanningPage'
 import RouteContextProvider from './context/RouteContext'
 
 const queryClient = new QueryClient()
@@ -23,6 +24,7 @@ function App() {
             <Switch>
               <Route exact path='/' component={HomePage} />
               <Route path='/schedule' component={SchedulePage} />
+              <Route path='/planning' component={PlanningPage} />
             </Switch>
           </BrowserRouter>
         </RouteContextProvider>
