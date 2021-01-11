@@ -12,7 +12,7 @@ export default function LegDrawer() {
             ((e as React.KeyboardEvent).key === 'Tab' ||
                 (e as React.KeyboardEvent).key === 'Shift')
         ) { return }
-
+        
         setDisplayDrawer(open);
     }
 

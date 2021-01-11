@@ -63,5 +63,14 @@ export const useTimelineStyles = makeStyles((_: Theme) =>
         },
         connector: {
             height: '1.5rem'
+        },
+        redDot: {
+            backgroundColor: 'red'
+        },
+        greyDot: {
+            backgroundColor: 'grey'
+        },
+        textColor: {
+            color: 'red'
         }
     }));
