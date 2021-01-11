@@ -10,12 +10,7 @@ const Header = () => {
             </LogoWrapper>
             <NavMenu>
                 <ul>
-                    {/* <li><NavLink to='/'>Home</NavLink></li> */}
                     <li><NavLink to='/'>Schedule</NavLink></li>
-                    {/* <li><NavLink to='/planning'>Planning</NavLink></li>
-                    <li><a href="#">Disruptions</a></li>
-                    <li><a href="#">Points of Interest</a></li>
-                    <li><a href="#">Contact HSL</a></li> */}
                 </ul>
             </NavMenu>
         </HeaderWrapper>

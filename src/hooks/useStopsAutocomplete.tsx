@@ -15,8 +15,6 @@ const GET_STOPS = gql`
 `;
 
 export const useStopsAutocomplete = (name: string) => {
-    console.log(name);
-    
     return useQuery(GET_STOPS, {
         variables: { name }
     })

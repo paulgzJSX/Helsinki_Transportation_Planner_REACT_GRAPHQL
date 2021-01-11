@@ -1,11 +1,11 @@
 import { useState, useContext } from 'react'
-import { useCoords } from '../../hooks/useCoords'
-import { RouteContext } from "../../context/RouteContext";
 import Button from '@material-ui/core/Button';
 import { Marker, Tooltip, useMapEvent } from "react-leaflet"
+import { useCoords } from '../../hooks/useCoords'
+import { RouteContext } from "../../context/RouteContext";
 
 
-export default function GetCurrentCoords(): any {
+export default function GetCurrentCoords() {
     const [isButtonFocused, setIsButtonFocused] = useState(false)
     const { setCoords, allowCoords, selectedCoords, setSelectedCoords } = useContext(RouteContext)
 

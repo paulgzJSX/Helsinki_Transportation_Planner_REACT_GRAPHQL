@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react'
 import { RouteContext } from '../../../context/RouteContext';
 import { convertDuration, convertTime, getMinutes, defineWidth } from '../../../helpers/helpers'
-import Info from '../../Info/Info'
 import { LegWrapper, LegStripe, Departure, defineIcon } from './LegElements'
 var polyline = require('@mapbox/polyline');
 

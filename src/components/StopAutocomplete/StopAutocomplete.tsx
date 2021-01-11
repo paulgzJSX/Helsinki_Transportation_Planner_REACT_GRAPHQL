@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useAutocomplete } from '../../hooks/useAutocomplete'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-// import classes from '*.module.css';
 import { RouteContext } from '../../context/RouteContext';
 import { useStopsAutocomplete } from '../../hooks/useStopsAutocomplete'
 import { IStop } from '../../interfaces/Interfaces'
