@@ -13,8 +13,6 @@ export default function LegTimeline({ toggleDrawer }: any) {
     const depStop = selectedLeg?.from?.stop?.name
     const arrStop = selectedLeg?.to?.name
 
-    console.log(selectedLeg)
-
     let tripStartIdx: number;
 
     const defineStopColor = (depStop: string, currStop: string, arrStop: string, idx: number) => {
@@ -34,7 +32,7 @@ export default function LegTimeline({ toggleDrawer }: any) {
         }
     }
 
-    const time = (stop: string) => {
+    const stopTime = (stop: string) => {
         return stop === depStop
             ? convertTime(selectedLeg.startTime)
             : stop === arrStop ? convertTime(selectedLeg.endTime) : null
@@ -66,7 +64,7 @@ export default function LegTimeline({ toggleDrawer }: any) {
                             <TimelineConnector className={classes.connector} />
                         </TimelineSeparator>
                         <TimelineContent>
-                            {stop.name} <Box component='span' display='inline'>{time(stop.name)}</Box>
+                            {stop.name} <Box component='span' display='inline'>{stopTime(stop.name)}</Box>
                         </TimelineContent>
                     </TimelineItem>
                 ))}
