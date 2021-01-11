@@ -1,31 +1,16 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-export const useAutocompleteStyle = makeStyles({
-    input: {
-        fontSize: 13
-    },
-    noOptions: {
-        fontSize: 13
-    },
-    option: {
-        fontSize: 13
-    },
-    tag: {
-        fontSize: 13
-    }
-})
-
-export const useTabStyles = makeStyles({
-    root: {
-        flexGrow: 1,
-    },
-})
-
 export const useSpeedDialStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             transform: 'translateZ(0px)',
             flexGrow: 1,
+        },
+        pointSelection: {
+            position: 'absolute',
+            right: '1rem',
+            top: '-.5rem',
+            zIndex: 400
         },
         exampleWrapper: {
             position: 'relative',
@@ -44,6 +29,31 @@ export const useSpeedDialStyles = makeStyles((theme: Theme) =>
         },
     }),
 )
+
+export const useCurrentCoordsStyles = makeStyles((_: Theme) => 
+    createStyles({
+        confirmationButton: {
+            position: 'absolute',
+            bottom: '4rem',
+            zIndex: 400,
+            left: '50%',
+            transform: 'translateX(-50%)'
+        }
+    })
+)
+
+export const useLegPathsStyles = makeStyles((_: Theme) => 
+    createStyles({
+        legInfo: {
+            position: 'absolute',
+            bottom: '2.4rem',
+            zIndex: 3000,
+            opacity: .8,
+            cursor: 'pointer'
+        }
+    })
+)
+
 
 export const useTimelineStyles = makeStyles((_: Theme) =>
     createStyles({

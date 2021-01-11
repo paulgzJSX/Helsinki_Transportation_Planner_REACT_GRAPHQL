@@ -2,12 +2,14 @@ import { useState, useContext } from 'react'
 import Button from '@material-ui/core/Button';
 import { Marker, Tooltip, useMapEvent } from "react-leaflet"
 import { useCoords } from '../../hooks/useCoords'
-import { RouteContext } from "../../context/RouteContext";
+import { RouteContext } from "../../context/RouteContext"
+import { useCurrentCoordsStyles } from '../../styleHooks/useStyle'
 
 
 export default function GetCurrentCoords() {
     const [isButtonFocused, setIsButtonFocused] = useState(false)
     const { setCoords, allowCoords, selectedCoords, setSelectedCoords } = useContext(RouteContext)
+    const classes = useCurrentCoordsStyles()
 
     const { data: location } = useCoords(selectedCoords)
 
@@ -26,7 +28,7 @@ export default function GetCurrentCoords() {
 
     return (
         <>
-            <div className="confirmation-button">
+            <div className={classes.confirmationButton}>
                 <Button
                     variant="contained"
                     color="primary"

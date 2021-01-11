@@ -6,6 +6,7 @@ import CircleMarkerEl from '../Map/CircleMarkerEl'
 import { setColor, defineColor } from '../../helpers/helpers'
 import { defineIcon } from '../Itineraries/Leg/LegElements'
 import { RouteContext } from '../../context/RouteContext'
+import { useLegPathsStyles } from '../../styleHooks/useStyle'
 
 
 const PolygonWithText = (props: any) => {
@@ -30,6 +31,8 @@ export default function LegPath({ selectedLeg }: any) {
     const [center, setCenter] = useState<any>([60.19, 24.94])
     const [pathColor, setPathColor] = useState({})
     const { displayDrawer, setDisplayDrawer } = useContext(RouteContext)
+
+    const classes = useLegPathsStyles()
 
     const map = useMap()
 
@@ -66,7 +69,7 @@ export default function LegPath({ selectedLeg }: any) {
             <Polyline weight={4} smoothFactor={1} pathOptions={pathColor} positions={points}>
                 {selectedLeg && <Tooltip>{selectedLeg?.trip?.routeShortName}</Tooltip>}
             </Polyline>
-            <div className='leg-info'>
+            <div className={classes.legInfo}>
                 <Alert
                     style={{ backgroundColor: defineColor(selectedLeg.mode) }}
                     icon={defineIcon(selectedLeg.mode)}

@@ -23,7 +23,7 @@ export default function PointSelection() {
     }
 
     return (
-        <div className='point-selection'>
+        <div className={classes.pointSelection}>
             <div className={classes.root}>
                 <div className={classes.exampleWrapper}>
                     <SpeedDial

@@ -27,10 +27,6 @@ a {
   text-decoration: none;
 }
 
-.nice-dates-popover {
-  max-width: 10rem !important;
-  height: 10rem !important;
-}
 
 .map-wrapper {
   display: flex;
@@ -43,61 +39,26 @@ a {
   margin: 0 auto;
 }
 
-.leaving {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
 #mapid { 
   width: 100%;
   height: 32rem !important;
   border-radius: 5px;
   position: relative;
-  /* border: 2px solid grey; */
-  /* box-shadow: 3px; */
-  /* z-index: 2000; */
-}
-
-/* .panel {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-} */
-
-.leaflet-container {
-  /* width: 100%;
-  height: 100%; */
-  /* position: absolute; */
 }
 
 .leaflet-container {
   cursor: default !important;
 }
 
-.point-selection {
-  position: absolute;
-  right: 1rem;
-  top: -.5rem;
-  z-index: 400;
-}
 
-.confirmation-button {
-  position: absolute;
-  bottom: 4rem;
-  z-index: 400;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.leg-info {
+/* .leg-info {
   position: absolute;
   bottom: 2.4rem;
   z-index: 3000;
   opacity: .8;
   cursor: pointer;
-}
+} */
 
 .rectangle-icon {
   background-color: rgb(62, 81, 143);
@@ -113,14 +74,14 @@ a {
 
 
 
-.journey-planner {
+/* .journey-planner {
   margin-top: 2rem;
   width: 100%;
   height: 35rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
+} */
 
 .left {
   display: flex;

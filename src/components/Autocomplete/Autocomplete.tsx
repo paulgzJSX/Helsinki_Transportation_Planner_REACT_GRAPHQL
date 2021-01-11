@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useAutocomplete } from '../../hooks/useAutocomplete'
 import { useCoords } from '../../hooks/useCoords';
-import { useAutocompleteStyle } from '../../styleHooks/useStyle'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { RouteContext } from '../../context/RouteContext';
-
+import { makeStyles } from '@material-ui/core/styles';
 
 
 interface ILocation {
@@ -15,6 +14,21 @@ interface ILocation {
 interface PropTypes {
     id: string
 }
+
+const useAutocompleteStyle = makeStyles({
+    input: {
+        fontSize: 13
+    },
+    noOptions: {
+        fontSize: 13
+    },
+    option: {
+        fontSize: 13
+    },
+    tag: {
+        fontSize: 13
+    }
+})
 
 export default function InputAutocomplete({ id }: PropTypes) {
     const [term, setTerm] = useState('')

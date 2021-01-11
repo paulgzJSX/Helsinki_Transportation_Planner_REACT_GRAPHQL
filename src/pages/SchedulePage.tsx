@@ -46,7 +46,6 @@ export default function SchedulePage() {
                     <div className="upper-right">
                         <Tab />
                     </div>
-                    {/* <Map /> */}
                 </div>
                 <Drawer />
             </div>
