@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { Itinerary } from '../components'
 import { useItinerary } from '../hooks/useItinerary'
-import { ItinerariesWrapper } from '../components/Hero/HeroElements'
+import { ItinerariesWrapper } from '../components/Itineraries/Itinerary/ItineraryElements'
 import { RouteContext } from '../context/RouteContext';
 import Tab from '../components/Tab/Tab'
 import Drawer from '../components/Drawer/Drawer'

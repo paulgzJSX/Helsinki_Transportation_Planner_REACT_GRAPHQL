@@ -3,8 +3,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
 import Header from './components/Header/Header'
-import { HomePage, SchedulePage } from './pages/'
-import PlanningPage from './pages/PlanningPage'
+import SchedulePage from './pages/SchedulePage'
 import RouteContextProvider from './context/RouteContext'
 
 const queryClient = new QueryClient()
@@ -22,9 +21,8 @@ function App() {
           <BrowserRouter>
             <Header />
             <Switch>
-              <Route exact path='/' component={HomePage} />
+              <Route exact path='/' component={SchedulePage} />
               <Route path='/schedule' component={SchedulePage} />
-              <Route path='/planning' component={PlanningPage} />
             </Switch>
           </BrowserRouter>
         </RouteContextProvider>

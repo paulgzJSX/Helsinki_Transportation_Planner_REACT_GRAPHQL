@@ -39,3 +39,19 @@ export const DepartureRow = styled.div`
         font-size: .7rem !important;
     }
 `
+
+export const ItinerariesWrapper = styled.div`
+    width: 100%;
+    margin: 3rem auto;
+    height: 20rem;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    font-family: inherit;  
+    box-shadow: 1px 2px 11px -2px rgba(34, 60, 80, 0.2);
+
+    p {
+        font-size: 1.2rem;
+        margin: .5rem 0 1rem;
+    }
+`

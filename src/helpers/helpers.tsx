@@ -2,8 +2,6 @@ export function convertDuration(duration: number) {
     let num = duration
     let minutes = num / 60
     let rminutes = Math.floor(minutes)
-    // let minutes = (hours - rhours) * 60
-    // let rminutes = Math.round(minutes)
     return rminutes
 }
 
