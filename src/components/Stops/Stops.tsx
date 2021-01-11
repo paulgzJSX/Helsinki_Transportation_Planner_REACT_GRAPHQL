@@ -1,12 +1,7 @@
 import { useState } from 'react'
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Container from '@material-ui/core/Container';
 import StopAutocomplete from '../StopAutocomplete/StopAutocomplete'
-import Box from '@material-ui/core/Box'
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import { CssBaseline, Container, Box, Typography, Grid }  from '@material-ui/core';
 import { IStop } from '../../interfaces/Interfaces'
-import Grid, { GridSpacing } from '@material-ui/core/Grid';
 
 
 export default function SimpleContainer() {

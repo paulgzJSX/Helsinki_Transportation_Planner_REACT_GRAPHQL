@@ -1,8 +1,15 @@
 import { useState } from 'react'
 import { Paper, Tabs, Tab } from '@material-ui/core'
 import { Map, Stops, TabPanel } from '../../components'
-import { useTabStyles } from '../../styleHooks/useStyle'
+import { makeStyles } from '@material-ui/core/styles';
 
+const tabs = [<Map />, <Stops />, 'Tab Three']
+
+const useTabStyles = makeStyles({
+    root: {
+        flexGrow: 1,
+    },
+})
 
 export default function CenteredTabs() {
     const [value, setValue] = useState(0)
@@ -23,15 +30,8 @@ export default function CenteredTabs() {
                     <Tab label="Route" />
                 </Tabs>
             </Paper>
-            <TabPanel value={value} index={0}>
-                <Map />
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <Stops />
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-               Tab Three
-            </TabPanel>
+            {tabs.map((tab, index) =>
+                <TabPanel children={tab} value={value} index={index} />)}
         </>
     )
 }
