@@ -2,8 +2,8 @@ export { default as Header } from './Header/Header'
 export { default as Map } from './Map/Map'
 export { default as Itinerary } from './Itineraries/Itinerary/Itinerary'
 
-export { default as LegPath } from './Map/LegPath'
-export { default as GetCurrentCoords } from './Map/GetCurrentCoords'
+export { default as LegPath } from './Map/LegPath/LegPath'
+export { default as GetCurrentCoords } from './Map/GetCurrentCoords/GetCurrentCoords'
 export { default as CircleMarkerEl } from './Map/CircleMarkerEl'
 
 export { default as Stops } from './Stops/Stops'

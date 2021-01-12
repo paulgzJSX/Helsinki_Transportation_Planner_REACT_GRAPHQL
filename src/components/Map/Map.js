@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { LegPath, GetCurrentCoords } from '../../components'
 import { RouteContext } from "../../context/RouteContext"
-import PointSelection from '../Map/PointSelection'
+import PointSelection from './PointSelection/PointSelection'
 
 import { MapContainer, TileLayer } from "react-leaflet"
 import L from 'leaflet'

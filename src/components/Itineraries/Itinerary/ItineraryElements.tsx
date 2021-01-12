@@ -28,7 +28,6 @@ export const LegsRow = styled.div`
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    /* margin-bottom: .5rem; */
     width: 100%;
     cursor: pointer;
 `

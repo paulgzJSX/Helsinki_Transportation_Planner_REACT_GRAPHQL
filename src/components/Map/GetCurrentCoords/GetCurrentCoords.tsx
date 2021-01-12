@@ -1,9 +1,9 @@
 import { useState, useContext } from 'react'
 import Button from '@material-ui/core/Button';
 import { Marker, Tooltip, useMapEvent } from "react-leaflet"
-import { useCoords } from '../../hooks/useCoords'
-import { RouteContext } from "../../context/RouteContext"
-import { useCurrentCoordsStyles } from '../../styleHooks/useStyle'
+import { useCoords } from '../../../hooks/useCoords'
+import { RouteContext } from "../../../context/RouteContext"
+import { useCurrentCoordsStyles } from './useCurrentCoordsStyles'
 
 
 export default function GetCurrentCoords() {

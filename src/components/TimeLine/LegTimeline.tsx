@@ -3,7 +3,7 @@ import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineC
 import { Typography, Box } from '@material-ui/core/';
 import { convertTime } from '../../helpers/helpers'
 import { RouteContext } from '../../context/RouteContext'
-import { useTimelineStyles } from '../../styleHooks/useStyle'
+import { useTimelineStyles } from '../TimeLine/useTimelineStyles'
 
 
 export default function LegTimeline({ toggleDrawer }: any) {

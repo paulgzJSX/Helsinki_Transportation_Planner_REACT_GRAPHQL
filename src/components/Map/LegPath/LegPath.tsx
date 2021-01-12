@@ -2,11 +2,11 @@ import { useState, useEffect, useContext } from 'react'
 import { Polyline, Tooltip, Rectangle, useMap, Polygon, Marker } from "react-leaflet";
 import L from 'leaflet';
 import { Alert } from '@material-ui/lab'
-import CircleMarkerEl from '../Map/CircleMarkerEl'
-import { setColor, defineColor } from '../../helpers/helpers'
-import { defineIcon } from '../Itineraries/Leg/LegElements'
-import { RouteContext } from '../../context/RouteContext'
-import { useLegPathsStyles } from '../../styleHooks/useStyle'
+import CircleMarkerEl from '../CircleMarkerEl'
+import { setColor, defineColor } from '../../../helpers/helpers'
+import { defineIcon } from '../../Itineraries/Leg/LegElements'
+import { RouteContext } from '../../../context/RouteContext'
+import { useLegPathsStyles } from './useLegPathStyles'
 
 
 const PolygonWithText = (props: any) => {
@@ -16,9 +16,7 @@ const PolygonWithText = (props: any) => {
     })
 
     return (
-        //   <Rectangle bounds={props.coords} pathOptions={props.color} fillOpacity={1} weight={500}>
         <Marker position={props.center} icon={icon} />
-        //   </Rectangle>
     )
 }
 

@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import { useItinerary } from '../hooks/useItinerary'
 import { RouteContext } from '../context/RouteContext';
 import { ItinerariesWrapper } from '../components/Itineraries/Itinerary/ItineraryElements'
-import { useSchedulePageStyles } from '../styleHooks/useSchedulePageStyles'
+import { useSchedulePageStyles } from './useSchedulePageStyles'
 
 
 export default function SchedulePage() {

@@ -4,7 +4,7 @@ import { useCoords } from '../../hooks/useCoords';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { RouteContext } from '../../context/RouteContext';
-import { makeStyles } from '@material-ui/core/styles';
+import { useAutocompleteStyles } from './useAutocompleteStyles'
 
 
 interface ILocation {
@@ -15,26 +15,12 @@ interface PropTypes {
     id: string
 }
 
-const useAutocompleteStyle = makeStyles({
-    input: {
-        fontSize: 13
-    },
-    noOptions: {
-        fontSize: 13
-    },
-    option: {
-        fontSize: 13
-    },
-    tag: {
-        fontSize: 13
-    }
-})
 
 export default function InputAutocomplete({ id }: PropTypes) {
     const [term, setTerm] = useState('')
     const [doFetch, setDoFetch] = useState(false)
     const { setFormData, formData, coords } = useContext(RouteContext)
-    const classes = useAutocompleteStyle();
+    const classes = useAutocompleteStyles();
 
     const { data: suggestions = [] } = useAutocomplete(doFetch, term)
     const { data: currentCoordsLocation } = useCoords(coords?.coords)
