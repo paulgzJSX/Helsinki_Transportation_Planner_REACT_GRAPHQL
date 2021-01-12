@@ -8,7 +8,7 @@ export const useSchedulePageStyles = makeStyles((_: Theme) =>
         mapWrapper: {
             display: 'flex',
             alignItems: 'center',
-            justifyContext: 'space-between',
+            justifyContent: 'space-between',
             borderRadius: '10px',
             overflow: 'hidden',
             height: '80vh',

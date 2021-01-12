@@ -1,8 +1,3 @@
-export interface ILocation {
-    id: string,
-    label: string
-}
-
 export interface ILocationDetails {
     coordinates?: any,
     id: string,
@@ -40,12 +35,98 @@ export interface IRouteContextProps {
     setDisplayDrawer: (displayDrawer: boolean) => void
 }
 
-export interface IStop {
-    gtfsId: string,
-    name: string,
+export interface ISuggestion {
+    coordinates: [number, number],
+    id: string
+    label: string;
+}
+
+export interface IStopDetails {
     code: string,
+    desc: string,
+    gtfsId: string,
     lat: number,
     lon: number,
-    desc: string,
+    name: string,  
+    zoneId: string,
+    __typename: 'Stop'
+}
+
+export interface IItinerary {
+    duration: number,
+    legs: ILeg[],
+    walkDistance: number,
+    __typename: 'Itinerary'
+}
+
+export interface ILeg {
+    agency: IAgency | null,
+    distance: number,
+    endTime: number,
+    from: IFrom,
+    legGeometry: ILegGeometry,
+    mode: string,
+    startTime: number,
+    to: ITo,
+    trip: ITrip | null,
+    stops: IStop[],
+    __typename: 'Leg'
+}
+
+export interface IAgency {
+    gtfsId: string,
+    name: string,
+    __typename: 'Agency'
+}
+
+export interface IFrom {
+    lat: number,
+    lon: number,
+    name: string,
+    stop: IStop | null,
+    __typename: 'Place'
+}
+
+export interface ILegGeometry {
+    length: number,
+    points: string,
+    __typename: 'Geometry',
+}
+
+export interface ITo {
+    lat: number,
+    lon: number,
+    name: string,
+    __typename: 'Place'
+}
+
+export interface ITrip {
+    gtfsId: string,
+    routeShortName: string,
+    stops: IStop[],
+    tripHeadsign: string,
+    __typename: 'Trip'
+}
+
+export interface IStop {
+    code: string,
+    desc?: string,
+    id?: string,
+    name: string,
+    routes?: IRoute[],
+    vehicleMode?: string,
+    wheelchairBoarding?: string,
     zoneId: string
+    __typename: 'Stop'
+}
+
+export interface IRoute {
+    shortName: string,
+    __typename: 'Route'
+}
+
+export interface ITabPanel {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
 }

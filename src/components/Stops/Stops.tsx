@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import StopAutocomplete from '../StopAutocomplete/StopAutocomplete'
 import { CssBaseline, Container, Box, Typography, Grid }  from '@material-ui/core';
-import { IStop } from '../../interfaces/Interfaces'
+import { IStopDetails } from '../../interfaces/Interfaces'
 
 
 export default function SimpleContainer() {
-  const [stop, setStop] = useState<IStop>()
-
+  const [stop, setStop] = useState<IStopDetails>()
+  
   return (
     <>
       <CssBaseline />

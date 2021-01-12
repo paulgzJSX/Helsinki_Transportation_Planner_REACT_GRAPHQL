@@ -1,11 +1,11 @@
-export function convertDuration(duration: number) {
+export function convertDuration(duration: number): number {
     let num = duration
     let minutes = num / 60
     let rminutes = Math.floor(minutes)
     return rminutes
 }
 
-export function convertTime(timestamp: Date) {
+export function convertTime(timestamp: Date): string {
     const date = new Date(timestamp)
     const hours = ('0' + date.getHours()).substr(-2)
     const minutes = ('0' + date.getMinutes()).substr(-2)
@@ -13,7 +13,7 @@ export function convertTime(timestamp: Date) {
     return hours + ':' + minutes
 }
 
-export function getMinutes(startTimestamp: Date, endTimestamp: Date) {
+export function getMinutes(startTimestamp: number, endTimestamp: number): number {
     const startDate = new Date(startTimestamp)
     const endDate = new Date(endTimestamp)
 
@@ -21,7 +21,7 @@ export function getMinutes(startTimestamp: Date, endTimestamp: Date) {
     return Math.round(diff / 60000)
 }
 
-export function defineWidth(startTime: Date, endTime: Date, duration: number) {
+export function defineWidth(startTime: number, endTime: number, duration: number): number {
     return Math.round((getMinutes(startTime, endTime) * 100) / convertDuration(duration))
 }
 
@@ -49,7 +49,7 @@ export function setColor(mode: string, fn: ({}) => void) {
     }
 }
 
-export function defineColor(mode: string) {
+export function defineColor(mode: string): string {
     return mode === 'BUS'
         ? '#007AC9'
         : mode === 'TRAM'

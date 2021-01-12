@@ -1,8 +1,13 @@
 import Leg from '../Leg/Leg'
 import { convertDuration, convertTime, getMinutes, defineWidth } from '../../../helpers/helpers'
 import { DepArrTime, DepartureRow, Duration, ItineraryWrapper, LegsRow, TimeRow } from './ItineraryElements'
+import { IItinerary, ILeg } from '../../../interfaces/Interfaces'
 
-const Itinerary: React.FC<PropType> = ({ itinerary }) => {
+type PropTypes = {
+    itinerary: IItinerary
+}
+
+const Itinerary: React.FC<PropTypes> = ({ itinerary }) => {
     return (
         <ItineraryWrapper>
             <TimeRow>
@@ -17,7 +22,7 @@ const Itinerary: React.FC<PropType> = ({ itinerary }) => {
             </TimeRow>
 
             <LegsRow>
-                {itinerary.legs.map((leg: any, idx: number) =>
+                {itinerary.legs.map((leg: ILeg, idx: number) =>
                     idx !== 0 && leg.startTime !== itinerary.legs[idx - 1].endTime
                         ? <>
                             <Leg
@@ -50,6 +55,3 @@ const Itinerary: React.FC<PropType> = ({ itinerary }) => {
 
 export default Itinerary
 
-type PropType = {
-    itinerary: any
-}

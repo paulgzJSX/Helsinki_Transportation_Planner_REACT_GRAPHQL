@@ -1,10 +1,6 @@
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: any;
-    value: any;
-}
+import { ITabPanel } from '../../interfaces/Interfaces'
 
-export default function TabPanel(props: TabPanelProps) {
+export default function TabPanel(props: ITabPanel) {
     const { children, value, index, ...other } = props;
 
     return (

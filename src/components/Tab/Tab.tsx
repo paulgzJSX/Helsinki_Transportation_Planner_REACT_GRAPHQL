@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Paper, Tabs, Tab } from '@material-ui/core'
 import { Map, Stops, TabPanel } from '../../components'
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
 
 const tabs = [<Map />, <Stops />, 'Tab Three']
 
@@ -12,7 +12,7 @@ const useTabStyles = makeStyles({
 })
 
 export default function CenteredTabs() {
-    const [value, setValue] = useState(0)
+    const [value, setValue] = useState<number>(0)
     const classes = useTabStyles()
 
     return (

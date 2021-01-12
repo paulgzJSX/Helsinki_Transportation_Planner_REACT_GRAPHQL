@@ -1,10 +1,11 @@
-import { useContext } from 'react';
+import { useContext } from 'react'
 import { InputAutocomplete, Tab, Drawer, Itinerary } from '../components'
 import Button from '@material-ui/core/Button';
 import { useItinerary } from '../hooks/useItinerary'
-import { RouteContext } from '../context/RouteContext';
+import { RouteContext } from '../context/RouteContext'
 import { ItinerariesWrapper } from '../components/Itineraries/Itinerary/ItineraryElements'
 import { useSchedulePageStyles } from './useSchedulePageStyles'
+import { IItinerary } from '../interfaces/Interfaces'
 
 
 export default function SchedulePage() {
@@ -31,7 +32,7 @@ export default function SchedulePage() {
                         ? 'Loading...'
                         : data &&
                         <ItinerariesWrapper>
-                            {data?.plan.itineraries.map((itinerary: any, idx: number) =>
+                            {data?.plan.itineraries.map((itinerary: IItinerary, idx: number) =>
                                 <Itinerary key={idx} itinerary={itinerary} />)}
                         </ItinerariesWrapper>
                     }

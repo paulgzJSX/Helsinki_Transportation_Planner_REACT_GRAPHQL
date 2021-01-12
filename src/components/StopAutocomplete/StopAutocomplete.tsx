@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { RouteContext } from '../../context/RouteContext';
 import { useStopsAutocomplete } from '../../hooks/useStopsAutocomplete'
-import { IStop } from '../../interfaces/Interfaces'
+import { IStopDetails } from '../../interfaces/Interfaces'
 
 const useAutocompleteStyle = makeStyles({
     input: {
@@ -22,24 +22,20 @@ const useAutocompleteStyle = makeStyles({
     }
 })
 
-interface ILocation {
-    label: string;
-}
-
 interface PropTypes {
     id: string,
-    setStop: (value: IStop) => void
+    setStop: (stop: IStopDetails) => void
 }
 
 export default function StopAutocomplete({ id, setStop }: PropTypes) {
-    const [term, setTerm] = useState('')
-    const [options, setOptions] = useState([])
+    const [term, setTerm] = useState<string>('')
+    const [options, setOptions] = useState<string[]>([])
     const classes = useAutocompleteStyle();
 
     const { data } = useStopsAutocomplete(term)
 
     useEffect(() => {
-        data && setOptions(data.stops.map((stop: any) => stop.name))
+        data && setOptions(data.stops.map((stop: IStopDetails) => stop.name))
     }, [data])
 
     return (

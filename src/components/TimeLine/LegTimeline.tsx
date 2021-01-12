@@ -4,7 +4,7 @@ import { Typography, Box } from '@material-ui/core/';
 import { convertTime } from '../../helpers/helpers'
 import { RouteContext } from '../../context/RouteContext'
 import { useTimelineStyles } from '../TimeLine/useTimelineStyles'
-
+import { IStop } from '../../interfaces/Interfaces'
 
 export default function LegTimeline({ toggleDrawer }: any) {
     const classes = useTimelineStyles();
@@ -49,7 +49,7 @@ export default function LegTimeline({ toggleDrawer }: any) {
                 <Typography variant="h6" gutterBottom>
                     {selectedLeg?.mode} {selectedLeg?.trip?.routeShortName}
                 </Typography>
-                {selectedLeg?.trip?.stops.map((stop: any, idx: number) => (
+                {selectedLeg?.trip?.stops.map((stop: IStop, idx: number) => (
                     <TimelineItem
                         key={stop.id}
                         classes={{ root: classes.root, missingOppositeContent: classes.missingOppositeContent }}
