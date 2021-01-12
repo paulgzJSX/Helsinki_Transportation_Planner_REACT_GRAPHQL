@@ -1,34 +1,28 @@
 import { useContext } from 'react';
-import InputAutocomplete from '../components/Autocomplete/Autocomplete'
+import { InputAutocomplete, Tab, Drawer, Itinerary } from '../components'
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-import { Itinerary } from '../components'
 import { useItinerary } from '../hooks/useItinerary'
-import { ItinerariesWrapper } from '../components/Itineraries/Itinerary/ItineraryElements'
 import { RouteContext } from '../context/RouteContext';
-import Tab from '../components/Tab/Tab'
-import Drawer from '../components/Drawer/Drawer'
+import { ItinerariesWrapper } from '../components/Itineraries/Itinerary/ItineraryElements'
+import { useSchedulePageStyles } from '../styleHooks/useSchedulePageStyles'
 
-const useButtonStyle = makeStyles({
-    root: { marginTop: '1rem' }
-})
 
 export default function SchedulePage() {
-    const classes = useButtonStyle();
-    const { formData, displayDrawer } = useContext(RouteContext)
+    const { formData } = useContext(RouteContext)
     const [fetchItinerary, { loading, data }] = useItinerary()
+    const classes = useSchedulePageStyles();
 
     return (
         <div>
-            <div className="map-wrapper">
-                <div className="left">
+            <div className={classes.mapWrapper}>
+                <div className={classes.left}>
                     <InputAutocomplete id='origin' />
                     <InputAutocomplete id='destination' />
                     <Button
                         variant="contained"
                         color="primary"
                         disableElevation
-                        classes={{ root: classes.root }}
+                        className={classes.button}
                         onClick={() => formData?.origin && formData?.destination && fetchItinerary()}
                     >
                         Search routes
@@ -42,8 +36,8 @@ export default function SchedulePage() {
                         </ItinerariesWrapper>
                     }
                 </div>
-                <div className="right">
-                    <div className="upper-right">
+                <div className={classes.right}>
+                    <div className={classes.upperRight}>
                         <Tab />
                     </div>
                 </div>

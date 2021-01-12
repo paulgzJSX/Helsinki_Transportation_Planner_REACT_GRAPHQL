@@ -8,4 +8,7 @@ export { default as CircleMarkerEl } from './Map/CircleMarkerEl'
 
 export { default as Stops } from './Stops/Stops'
 export { default as TabPanel } from './Tab/TabPanel'
+export { default as Tab } from './Tab/Tab'
+export { default as Drawer } from './Drawer/Drawer'
+export { default as InputAutocomplete } from './Autocomplete/Autocomplete'
 
