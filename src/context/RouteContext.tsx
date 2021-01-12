@@ -1,13 +1,12 @@
 import { useState, createContext, useEffect } from 'react'
-import { IRouteContextProps, IFormData } from '../interfaces/Interfaces'
+import { IRouteContext, IFormData, ILeg } from '../interfaces/Interfaces'
 
-
-export const RouteContext = createContext<Partial<IRouteContextProps>>({})
+export const RouteContext = createContext<Partial<IRouteContext>>({})
 
 const RouteContextProvider: React.FC = ({ children }) => {
     const [formData, setFormData] = useState<IFormData>()
-    const [displayItineraries, setDisplayItineraries] = useState<boolean>(false)
-    const [selectedLeg, setSelectedLeg] = useState<any>()
+    const [displayItineraries, setDisplayItineraries] = useState(false)
+    const [selectedLeg, setSelectedLeg] = useState<ILeg>()
     const [coords, setCoords] = useState<any>({})
     const [allowCoords, setAllowCoords] = useState(null)
     const [selectedCoords, setSelectedCoords] = useState(null)

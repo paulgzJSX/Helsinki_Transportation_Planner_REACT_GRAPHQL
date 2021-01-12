@@ -11,11 +11,11 @@ const actions = [
 ]
 
 export default function PointSelection() {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState<boolean>(false)
     const { setAllowCoords, setSelectedCoords } = useContext(RouteContext)
     const classes = usePointSelectionStyles();
 
-    const handleClick = (_: any, id: string): void => {
+    const handleClick = (_: any, id: string) => {
         setOpen(false)
         setAllowCoords({ id, state: true })
         setSelectedCoords(null)

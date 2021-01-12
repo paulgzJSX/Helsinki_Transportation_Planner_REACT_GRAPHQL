@@ -11,6 +11,7 @@ type PropTypes = {
     id: string
 }
 
+
 export default function InputAutocomplete({ id }: PropTypes) {
     const [term, setTerm] = useState<string>('')
     const [doFetch, setDoFetch] = useState<boolean>(false)

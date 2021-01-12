@@ -7,7 +7,7 @@ type PropTypes = {
     itinerary: IItinerary
 }
 
-const Itinerary: React.FC<PropTypes> = ({ itinerary }) => {
+const Itinerary = ({ itinerary }: PropTypes) => {
     return (
         <ItineraryWrapper>
             <TimeRow>

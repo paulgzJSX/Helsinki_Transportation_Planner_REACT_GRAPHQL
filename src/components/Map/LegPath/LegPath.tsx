@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import { Polyline, Tooltip, Rectangle, useMap, Polygon, Marker } from "react-leaflet";
-import L from 'leaflet';
+import L, { LatLngTuple } from 'leaflet';
 import { Alert } from '@material-ui/lab'
 import CircleMarkerEl from '../CircleMarkerEl'
 import { setColor, defineColor } from '../../../helpers/helpers'
@@ -8,25 +8,24 @@ import { defineIcon } from '../../Itineraries/Leg/LegElements'
 import { RouteContext } from '../../../context/RouteContext'
 import { useLegPathsStyles } from './useLegPathStyles'
 
+const DEF_LOCATION: LatLngTuple = [60.19, 24.94]
 
 const PolygonWithText = (props: any) => {
     const icon = L.divIcon({
         className: 'rectangle-icon',
         html: `<div>${props.route}</div>`
     })
-
     return (
         <Marker position={props.center} icon={icon} />
     )
 }
 
-
 export default function LegPath({ selectedLeg }: any) {
-    const [startPoints, setStartPoints] = useState<any>([60.19, 24.94])
-    const [endPoints, setEndPoints] = useState<any>([60.19, 24.94])
+    const [startPoints, setStartPoints] = useState(DEF_LOCATION)
+    const [endPoints, setEndPoints] = useState(DEF_LOCATION)
     const [points, setPoints] = useState([])
-    const [bounds, setBounds] = useState<any>([[60.19, 24.94], [60.19, 24.94]])
-    const [center, setCenter] = useState<any>([60.19, 24.94])
+    const [bounds, setBounds] = useState([DEF_LOCATION, DEF_LOCATION])
+    const [center, setCenter] = useState(DEF_LOCATION)
     const [pathColor, setPathColor] = useState({})
     const { displayDrawer, setDisplayDrawer } = useContext(RouteContext)
 
@@ -37,7 +36,6 @@ export default function LegPath({ selectedLeg }: any) {
     useEffect(() => {
         map.fitBounds([startPoints, endPoints])
     }, [startPoints, endPoints])
-
 
     useEffect(() => {
         if (selectedLeg) {

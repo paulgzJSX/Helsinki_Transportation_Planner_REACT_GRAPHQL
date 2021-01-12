@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface ILocationDetails {
     coordinates?: any,
     id: string,
@@ -10,46 +12,42 @@ export interface IFormData {
     date?: Date
 }
 
-export interface IRouteContextProps {
+export interface IRouteContext {
     formData: IFormData,
-    setFormData?: (formData: IFormData) => void,
+    setFormData: Dispatch<SetStateAction<IFormData>>,
     displayItineraries?: boolean,
-    setDisplayItineraries?: (displayItineraries: boolean) => void,
-    points: [Number],
-    setPoints?: (points: [Number]) => void,
-    selectedLeg: any,
-    setSelectedLeg: (selectedLeg: {}) => void,
+    setDisplayItineraries: Dispatch<SetStateAction<boolean>>,
+    selectedLeg: ILeg,
+    setSelectedLeg: Dispatch<SetStateAction<ILeg>>,
     coords: {
         id: string,
-        coords: {
-            lat: number,
-            lon: number
-        }
+        coords: ICoordinatesObj
     },
     setCoords: (coords: {}) => void,
-    allowCoords: any,
-    setAllowCoords: (allowCoords: any) => void,
+    allowCoords: {
+        id?: string,
+        state: boolean
+    },
+    setAllowCoords: Dispatch<SetStateAction<any>>,
     selectedCoords: any,
-    setSelectedCoords: (selectedCoords: any) => void,
+    setSelectedCoords: Dispatch<SetStateAction<any>>,
     displayDrawer: boolean,
-    setDisplayDrawer: (displayDrawer: boolean) => void
+    setDisplayDrawer: Dispatch<SetStateAction<boolean>>
+}
+
+export interface ICoordinates {
+    coordinates: [number, number]
+}
+
+export interface ICoordinatesObj {
+    lat: number,
+    lon: number
 }
 
 export interface ISuggestion {
-    coordinates: [number, number],
+    coordinates: ICoordinates,
     id: string
     label: string;
-}
-
-export interface IStopDetails {
-    code: string,
-    desc: string,
-    gtfsId: string,
-    lat: number,
-    lon: number,
-    name: string,  
-    zoneId: string,
-    __typename: 'Stop'
 }
 
 export interface IItinerary {
@@ -117,6 +115,17 @@ export interface IStop {
     vehicleMode?: string,
     wheelchairBoarding?: string,
     zoneId: string
+    __typename: 'Stop'
+}
+
+export interface IStopDetails {
+    code: string,
+    desc: string,
+    gtfsId: string,
+    lat: number,
+    lon: number,
+    name: string,  
+    zoneId: string,
     __typename: 'Stop'
 }
 

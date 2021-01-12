@@ -34,8 +34,8 @@ export default function LegTimeline({ toggleDrawer }: any) {
 
     const stopTime = (stop: string) => {
         return stop === depStop
-            ? convertTime(selectedLeg.startTime)
-            : stop === arrStop ? convertTime(selectedLeg.endTime) : null
+            ? convertTime(new Date(selectedLeg.startTime))
+            : stop === arrStop ? convertTime(new Date(selectedLeg.endTime)) : null
     }
 
     return (
