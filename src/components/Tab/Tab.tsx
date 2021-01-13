@@ -32,6 +32,7 @@ export default function CenteredTabs() {
             </Paper>
             {tabs.map((tab, index) =>
                 <TabPanel
+                    key={index}
                     children={tab}
                     value={value}
                     index={index}

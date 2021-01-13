@@ -7,7 +7,7 @@ type PropTypes = {
     itinerary: IItinerary
 }
 
-const Itinerary = ({ itinerary }: PropTypes) => {
+const Itinerary = ({ itinerary }: PropTypes) => {  
     return (
         <ItineraryWrapper>
             <TimeRow>

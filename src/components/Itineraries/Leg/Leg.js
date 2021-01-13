@@ -1,12 +1,9 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { RouteContext } from '../../../context/RouteContext';
-import { convertDuration, convertTime, getMinutes, defineWidth } from '../../../helpers/helpers'
-import { LegWrapper, LegStripe, Departure, defineIcon } from './LegElements'
+import { LegWrapper, LegStripe, defineIcon } from './LegElements'
 var polyline = require('@mapbox/polyline');
 
-const Leg = ({ width, mode, routeName, leg}) => {
-    const [displayInfo, setDisplayInfo] = useState(false)
-
+const Leg = ({ width, mode, routeName, leg }) => {
     const { setSelectedLeg } = useContext(RouteContext)
 
     const handleClick = () => {
@@ -23,15 +20,11 @@ const Leg = ({ width, mode, routeName, leg}) => {
     return (
         <> {mode === 'WALK' || mode === 'WAIT' && width < 5
             ? null
-            : <LegWrapper width={width} onClick={handleClick} onMouseEnter={() => setDisplayInfo(true)} onMouseLeave={() => setDisplayInfo(false)}>
+            : <LegWrapper width={width} onClick={handleClick}>
                 <LegStripe mode={mode}>
                     {defineIcon(mode)}
                     <span>{width > 5 && routeName} {mode === 'WAIT' && 'min'}</span>
                 </LegStripe>
-                {/* <Departure>
-                    {mode !== 'WAIT' && mode !== 'WALK' && <p><span>{convertTime(leg.startTime)}</span> {leg.from.name}</p>}
-                </Departure> */}
-                {/* {displayInfo && <Info leg={leg} />} */}
             </LegWrapper>}
         </>
     )

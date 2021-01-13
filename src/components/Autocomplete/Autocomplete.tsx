@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useAutocomplete } from '../../hooks/useAutocomplete'
 import { useCoords } from '../../hooks/useCoords';
 import TextField from '@material-ui/core/TextField';
@@ -10,7 +10,6 @@ import { ISuggestion } from '../../interfaces/Interfaces'
 type PropTypes = {
     id: string
 }
-
 
 export default function InputAutocomplete({ id }: PropTypes) {
     const [term, setTerm] = useState<string>('')

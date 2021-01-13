@@ -16,7 +16,6 @@ const RouteContextProvider: React.FC = ({ children }) => {
         if (!formData?.origin || !formData?.destination) setSelectedLeg(null)
         formData?.origin && formData?.destination && setAllowCoords({ state: false })
     }, [formData])
-
     
     return (
         <RouteContext.Provider value={{
