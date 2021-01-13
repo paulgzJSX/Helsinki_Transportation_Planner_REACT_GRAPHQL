@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { InputAutocomplete, Tab, Drawer, Itinerary } from '../components'
-import Button from '@material-ui/core/Button';
+import { Button, CircularProgress } from '@material-ui/core';
 import { useItinerary } from '../hooks/useItinerary'
 import { RouteContext } from '../context/RouteContext'
 import { ItinerariesWrapper } from '../components/Itineraries/Itinerary/ItineraryElements'
@@ -29,7 +29,7 @@ export default function SchedulePage() {
                         Search routes
                     </Button>
                     {loading
-                        ? 'Loading...'
+                        ? <CircularProgress style={{ marginTop: '7rem' }} />
                         : data &&
                         <ItinerariesWrapper>
                             {data?.plan.itineraries.map((itinerary: IItinerary, idx: number) =>

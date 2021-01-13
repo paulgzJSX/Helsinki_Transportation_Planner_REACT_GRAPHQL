@@ -1,5 +1,5 @@
-import { gql, useLazyQuery } from '@apollo/client';
-import { useContext } from 'react';
+import { gql, useLazyQuery } from '@apollo/client'
+import { useContext } from 'react'
 import { RouteContext } from '../context/RouteContext'
 
 const GET_ITINERARY = gql`

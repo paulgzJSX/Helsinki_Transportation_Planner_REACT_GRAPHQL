@@ -137,7 +137,15 @@ export interface IStopDetails {
     lon: number,
     name: string,  
     zoneId: string,
+    routes?: IRoutePerStop[],
     __typename: 'Stop'
+}
+
+export interface IRoutePerStop {
+    shortName: string,
+    longName: string,
+    bikesAllowed: string,
+    mode: string
 }
 
 export interface IRoute {

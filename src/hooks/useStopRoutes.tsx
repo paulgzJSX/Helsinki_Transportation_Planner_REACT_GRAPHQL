@@ -1,4 +1,4 @@
-import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client'
 
 const GET_STOP_ROUTES = gql`
   query GetStopRoutes ($id: String!) {

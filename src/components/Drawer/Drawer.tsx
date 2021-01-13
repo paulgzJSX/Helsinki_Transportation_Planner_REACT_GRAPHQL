@@ -3,7 +3,6 @@ import LegTimeline from '../TimeLine/LegTimeline'
 import { Drawer } from '@material-ui/core/'
 import { RouteContext } from '../../context/RouteContext'
 
-
 export default function LegDrawer() {
     const { displayDrawer, setDisplayDrawer } = useContext(RouteContext)
 
