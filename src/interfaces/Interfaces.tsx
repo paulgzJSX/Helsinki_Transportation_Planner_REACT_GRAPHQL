@@ -1,6 +1,16 @@
 import { LatLngTuple } from "leaflet";
 import { Dispatch, SetStateAction } from "react";
 
+export interface ILocation  {
+    coordinates: number[],
+    id: string,
+    label: string,
+    locality: string,
+    neighbourhood: string,
+    postalCode: string,
+    region: string
+}
+
 export interface ILocationDetails {
     coordinates?: any,
     id: string,
@@ -30,8 +40,8 @@ export interface IRouteContext {
         state: boolean
     },
     setAllowCoords: Dispatch<SetStateAction<any>>,
-    selectedCoords: any,
-    setSelectedCoords: Dispatch<SetStateAction<any>>,
+    selectedCoords: ICoordinatesObj,
+    setSelectedCoords: Dispatch<SetStateAction<ICoordinatesObj>>,
     displayDrawer: boolean,
     setDisplayDrawer: Dispatch<SetStateAction<boolean>>
 }
@@ -42,7 +52,7 @@ export interface ICoordinates {
 
 export interface ICoordinatesObj {
     lat: number,
-    lon: number
+    lng: number
 }
 
 export interface ISuggestion {

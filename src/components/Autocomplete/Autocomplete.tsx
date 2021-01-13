@@ -5,15 +5,14 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { RouteContext } from '../../context/RouteContext';
 import { useAutocompleteStyles } from './useAutocompleteStyles'
-import { ISuggestion } from '../../interfaces/Interfaces'
 
 type PropTypes = {
     id: string
 }
 
 export default function InputAutocomplete({ id }: PropTypes) {
-    const [term, setTerm] = useState<string>('')
-    const [doFetch, setDoFetch] = useState<boolean>(false)
+    const [term, setTerm] = useState('')
+    const [doFetch, setDoFetch] = useState(false)
     const { setFormData, formData, coords } = useContext(RouteContext)
     const classes = useAutocompleteStyles();
 
@@ -42,12 +41,12 @@ export default function InputAutocomplete({ id }: PropTypes) {
                 noOptionsText='Type to get locations'
                 onChange={(_, value) => setFormData({
                     ...formData,
-                    [id]: suggestions.find((suggestion: ISuggestion) => suggestion.label === value)
+                    [id]: suggestions.find(suggestion => suggestion.label === value)
                 })
                 }
                 onInputChange={(_, inputValue) => setTerm(inputValue)}
                 value={term}
-                options={suggestions && suggestions.map((suggestion: ISuggestion) => suggestion.label)}
+                options={suggestions && suggestions.map(suggestion => suggestion.label)}
                 renderInput={(params) => (
                     <TextField
                         {...params}

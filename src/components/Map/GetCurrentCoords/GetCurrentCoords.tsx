@@ -4,24 +4,25 @@ import { Marker, Tooltip, useMapEvent } from "react-leaflet"
 import { useCoords } from '../../../hooks/useCoords'
 import { RouteContext } from "../../../context/RouteContext"
 import { useCurrentCoordsStyles } from './useCurrentCoordsStyles'
+import { LeafletMouseEvent } from 'leaflet';
 
 
 export default function GetCurrentCoords() {
     const [isButtonFocused, setIsButtonFocused] = useState(false)
-    const { setCoords, allowCoords, selectedCoords, setSelectedCoords } = useContext(RouteContext)
+    const { setCoords, allowCoords: { id }, selectedCoords, setSelectedCoords } = useContext(RouteContext)
     const classes = useCurrentCoordsStyles()
 
     const { data: location } = useCoords(selectedCoords)
 
-    const map = useMapEvent('click', e => {
+    const map = useMapEvent('click', (e: LeafletMouseEvent) => {
         if (!isButtonFocused) {
-            setSelectedCoords({ lat: e.latlng.lat, lon: e.latlng.lng })
+            setSelectedCoords({ lat: e.latlng.lat, lng: e.latlng.lng })
             map.setView(e.latlng, 15)
         }
     })
 
     const handleClick = () => {
-        setCoords({ id: allowCoords?.id, coords: selectedCoords })
+        setCoords({ id, coords: selectedCoords })
         setSelectedCoords(null)
         setIsButtonFocused(false)
     }
@@ -39,7 +40,7 @@ export default function GetCurrentCoords() {
                     onFocus={() => setIsButtonFocused(true)}
                     onBlur={() => setIsButtonFocused(true)}
                 >
-                    Confirm {allowCoords.id}
+                    Confirm {id}
                 </Button>
             </div>
             {selectedCoords &&

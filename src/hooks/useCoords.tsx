@@ -1,11 +1,11 @@
 import axios from "axios"
 import { useQuery } from "react-query"
-import { ICoordinatesObj } from '../interfaces/Interfaces'
+import { ICoordinatesObj, ILocation } from '../interfaces/Interfaces'
 
 export const useCoords = (coords: ICoordinatesObj) => {
-    return useQuery(['coords', coords], async () => {
+    return useQuery(['coords', coords], async (): Promise<ILocation> => {
         if (coords) {
-            const { data } = await axios.get(`https://api.digitransit.fi/geocoding/v1/reverse?point.lat=${coords?.lat}&point.lon=${coords?.lon}&size=1`)
+            const { data } = await axios.get(`https://api.digitransit.fi/geocoding/v1/reverse?point.lat=${coords?.lat}&point.lon=${coords?.lng}&size=1`)
 
             return {
                 coordinates: Object.values(coords),

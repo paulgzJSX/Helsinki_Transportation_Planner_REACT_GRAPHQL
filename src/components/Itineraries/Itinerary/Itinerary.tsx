@@ -7,39 +7,39 @@ type PropTypes = {
     itinerary: IItinerary
 }
 
-const Itinerary = ({ itinerary }: PropTypes) => {  
+const Itinerary = ({ itinerary: { legs, duration } }: PropTypes) => {  
     return (
         <ItineraryWrapper>
             <TimeRow>
                 <DepArrTime>
-                    <span>{convertTime(new Date(itinerary.legs[0].startTime))}</span>
+                    <span>{convertTime(new Date(legs[0].startTime))}</span>
                     <span> - </span>
-                    <span>{convertTime(new Date(itinerary.legs[itinerary.legs.length - 1].endTime))}</span>
+                    <span>{convertTime(new Date(legs[legs.length - 1].endTime))}</span>
                 </DepArrTime>
                 <Duration>
-                    <span>{convertDuration(itinerary.duration) + ' min'}</span>
+                    <span>{convertDuration(duration) + ' min'}</span>
                 </Duration>
             </TimeRow>
 
             <LegsRow>
-                {itinerary.legs.map((leg: ILeg, idx: number) =>
-                    idx !== 0 && leg.startTime !== itinerary.legs[idx - 1].endTime
+                {legs.map((leg: ILeg, idx: number) =>
+                    idx !== 0 && leg.startTime !== legs[idx - 1].endTime
                         ? <>
                             <Leg
-                                width={defineWidth(itinerary.legs[idx - 1].endTime, leg.startTime, itinerary.duration)}
+                                width={defineWidth(legs[idx - 1].endTime, leg.startTime, duration)}
                                 mode='WAIT'
-                                routeName={getMinutes(itinerary.legs[idx - 1].endTime, leg.startTime)}
+                                routeName={getMinutes(legs[idx - 1].endTime, leg.startTime)}
                                 leg={leg}
                             />
                             <Leg
-                                width={defineWidth(leg.startTime, leg.endTime, itinerary.duration)}
+                                width={defineWidth(leg.startTime, leg.endTime, duration)}
                                 mode={leg.mode}
                                 routeName={leg.mode === 'WALK' ? getMinutes(leg.startTime, leg.endTime) : leg.trip.routeShortName}
                                 leg={leg}
                             />
                         </>
                         : <Leg
-                            width={defineWidth(leg.startTime, leg.endTime, itinerary.duration)}
+                            width={defineWidth(leg.startTime, leg.endTime, duration)}
                             mode={leg.mode}
                             routeName={leg.mode === 'WALK' ? getMinutes(leg.startTime, leg.endTime) : leg.trip.routeShortName}
                             leg={leg}
