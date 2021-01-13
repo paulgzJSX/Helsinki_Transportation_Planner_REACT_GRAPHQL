@@ -1,3 +1,4 @@
+import { LatLngTuple } from "leaflet";
 import { Dispatch, SetStateAction } from "react";
 
 export interface ILocationDetails {
@@ -87,7 +88,7 @@ export interface IFrom {
 
 export interface ILegGeometry {
     length: number,
-    points: string,
+    points: LatLngTuple[],
     __typename: 'Geometry',
 }
 

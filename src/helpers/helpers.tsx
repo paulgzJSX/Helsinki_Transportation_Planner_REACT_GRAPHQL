@@ -1,8 +1,5 @@
 export function convertDuration(duration: number): number {
-    let num = duration
-    let minutes = num / 60
-    let rminutes = Math.floor(minutes)
-    return rminutes
+    return Math.floor(duration / 60)
 }
 
 export function convertTime(timestamp: Date): string {
@@ -23,30 +20,6 @@ export function getMinutes(startTimestamp: number, endTimestamp: number): number
 
 export function defineWidth(startTime: number, endTime: number, duration: number): number {
     return Math.round((getMinutes(startTime, endTime) * 100) / convertDuration(duration))
-}
-
-
-export function setColor(mode: string, fn: ({}) => void) {
-    switch (mode) {
-        case 'BUS':
-            fn({ color: '#007AC9' })
-            break;
-
-        case 'TRAM':
-            fn({ color: '#00985F' })
-            break;
-
-        case 'RAIL':
-            fn({ color: '#8C4799' })
-            break;
-
-        case 'SUBWAY':
-            fn({ color: '#FF6319' })
-            break;
-
-        default:
-            break;
-    }
 }
 
 export function defineColor(mode: string): string {

@@ -1,14 +1,13 @@
-import { useState, useEffect, useContext } from 'react'
-import { Polyline, Tooltip, useMap, Marker } from "react-leaflet";
-import L, { LatLngTuple } from 'leaflet';
+import { useEffect, useContext } from 'react'
 import { Alert } from '@material-ui/lab'
 import CircleMarkerEl from '../CircleMarkerEl'
-import { setColor, defineColor } from '../../../helpers/helpers'
+import { Polyline, Tooltip, useMap, Marker } from "react-leaflet";
+import L from 'leaflet';
+import { defineColor } from '../../../helpers/helpers'
 import { defineIcon } from '../../Itineraries/Leg/LegElements'
 import { RouteContext } from '../../../context/RouteContext'
 import { useLegPathsStyles } from './useLegPathStyles'
-
-const DEF_LOCATION: LatLngTuple = [60.19, 24.94]
+import { ILeg } from '../../../interfaces/Interfaces'
 
 const PolygonWithText = (props: any) => {
     const icon = L.divIcon({
@@ -18,56 +17,46 @@ const PolygonWithText = (props: any) => {
     return <Marker position={props.center} icon={icon} />
 }
 
-export default function LegPath({ selectedLeg }: any) {
-    const [startPoints, setStartPoints] = useState(DEF_LOCATION)
-    const [endPoints, setEndPoints] = useState(DEF_LOCATION)
-    const [points, setPoints] = useState([])
-    const [bounds, setBounds] = useState([DEF_LOCATION, DEF_LOCATION])
-    const [center, setCenter] = useState(DEF_LOCATION)
-    const [pathColor, setPathColor] = useState({})
+type PropTypes = {
+    selectedLeg: ILeg
+}
+
+export default function LegPath({ selectedLeg: { mode, trip: { routeShortName: route }, legGeometry: { points } } }: PropTypes) {
     const { displayDrawer, setDisplayDrawer } = useContext(RouteContext)
-
     const classes = useLegPathsStyles()
-
     const map = useMap()
 
-    useEffect(() => {
-        map.fitBounds([startPoints, endPoints])
-    }, [startPoints, endPoints])
+    const startPoint = points[0]
+    const centerPoint = points[Math.round(points.length / 2)]
+    const endPoint = points[points.length - 1]
 
     useEffect(() => {
-        if (selectedLeg) {
-            setColor(selectedLeg?.mode, setPathColor)
-
-            const points = selectedLeg?.legGeometry.points
-            setStartPoints(points[0])
-            setEndPoints(points[points.length - 1])
-            setPoints(points)
-            const northWestLat = points[Math.round(points.length / 2)][0] - .0016
-            const northWestLon = points[Math.round(points.length / 2)][1] - .005
-            setBounds([[northWestLat, northWestLon], [northWestLat, northWestLon]])
-            setCenter(points[Math.round(points.length / 2)])
-        }
-    }, [selectedLeg])
+        map.fitBounds([startPoint, endPoint])
+    }, [points])
 
     return (
         <>
-            <CircleMarkerEl coords={startPoints} type='departure' color={pathColor} />
-            <CircleMarkerEl coords={endPoints} type='arrival' color={pathColor} />
-            <PolygonWithText
-                mode={selectedLeg?.mode} route={selectedLeg?.trip?.routeShortName} coords={bounds} center={center} color={pathColor} />
-            <Polyline weight={4} smoothFactor={1} pathOptions={pathColor} positions={points}>
-                {selectedLeg && <Tooltip>{selectedLeg?.trip?.routeShortName}</Tooltip>}
-            </Polyline>
+            <CircleMarkerEl coords={startPoint} type='departure' />
+            <CircleMarkerEl coords={endPoint} type='arrival' />
+            <PolygonWithText route={route} center={centerPoint} />
+            {points &&
+                <Polyline
+                    weight={4}
+                    smoothFactor={1}
+                    pathOptions={{ color: defineColor(mode) }}
+                    positions={points}
+                >
+                    {<Tooltip>{route}</Tooltip>}
+                </Polyline>}
             <div className={classes.legInfo}>
                 <Alert
-                    style={{ backgroundColor: defineColor(selectedLeg.mode) }}
-                    icon={defineIcon(selectedLeg.mode)}
+                    style={{ backgroundColor: defineColor(mode) }}
+                    icon={defineIcon(mode)}
                     variant="filled"
                     severity="info"
                     onClick={() => setDisplayDrawer(!displayDrawer)}
                 >
-                    {selectedLeg.mode} {selectedLeg.trip.routeShortName}
+                    {mode} {route}
                 </Alert>
             </div>
         </>
