@@ -1,9 +1,9 @@
 import { useContext } from 'react'
 import { RouteContext } from '../../../context/RouteContext';
 import { LegWrapper, LegStripe, defineIcon } from './LegElements'
-var polyline = require('@mapbox/polyline');
+let polyline = require('@mapbox/polyline');
 
-const Leg = ({ width, mode, routeName, leg }) => {
+export default function Leg ({ width, mode, routeName, leg }) {
     const { setSelectedLeg } = useContext(RouteContext)
 
     const handleClick = () => {
@@ -29,5 +29,3 @@ const Leg = ({ width, mode, routeName, leg }) => {
         </>
     )
 }
-
-export default Leg

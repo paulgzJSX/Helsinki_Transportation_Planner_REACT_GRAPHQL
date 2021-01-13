@@ -7,7 +7,7 @@ type PropTypes = {
     itinerary: IItinerary
 }
 
-const Itinerary = ({ itinerary: { legs, duration } }: PropTypes) => {  
+export default function Itinerary ({ itinerary: { legs, duration } }: PropTypes) {  
     return (
         <ItineraryWrapper>
             <TimeRow>
@@ -52,6 +52,4 @@ const Itinerary = ({ itinerary: { legs, duration } }: PropTypes) => {
         </ItineraryWrapper>
     )
 }
-
-export default Itinerary
 

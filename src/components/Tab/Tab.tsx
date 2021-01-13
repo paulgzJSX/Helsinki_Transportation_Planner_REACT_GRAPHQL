@@ -4,6 +4,7 @@ import { Map, Stops, TabPanel } from '../../components'
 import { makeStyles } from '@material-ui/core/styles'
 
 const tabs = [<Map />, <Stops />, 'Tab Three']
+const tabTitles = ['Map', 'Schedule', 'Route']
 
 const useTabStyles = makeStyles({
     root: {
@@ -12,7 +13,7 @@ const useTabStyles = makeStyles({
 })
 
 export default function CenteredTabs() {
-    const [value, setValue] = useState<number>(0)
+    const [value, setValue] = useState(0)
     const classes = useTabStyles()
 
     return (
@@ -20,14 +21,13 @@ export default function CenteredTabs() {
             <Paper className={classes.root}>
                 <Tabs
                     value={value}
-                    onChange={(_, newValue) => setValue(newValue)}
+                    onChange={(_, newValue: number) => setValue(newValue)}
                     indicatorColor="primary"
                     textColor="primary"
                     centered
                 >
-                    <Tab label="Map" />
-                    <Tab label="Schedule" />
-                    <Tab label="Route" />
+                    {tabTitles.map((tabTitle: string) =>
+                        <Tab key={tabTitle} label={tabTitle} />)}
                 </Tabs>
             </Paper>
             {tabs.map((tab, index) =>

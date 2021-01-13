@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ApolloClient, InMemoryCache } from '@apollo/client';

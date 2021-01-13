@@ -1,13 +1,14 @@
 import { useEffect, useContext } from 'react'
 import { Alert } from '@material-ui/lab'
 import CircleMarkerEl from '../CircleMarkerEl'
-import { Polyline, Tooltip, useMap, Marker } from "react-leaflet";
-import L from 'leaflet';
 import { defineColor } from '../../../helpers/helpers'
 import { defineIcon } from '../../Itineraries/Leg/LegElements'
 import { RouteContext } from '../../../context/RouteContext'
 import { useLegPathsStyles } from './useLegPathStyles'
 import { ILeg } from '../../../interfaces/Interfaces'
+
+import { Polyline, Tooltip, useMap, Marker } from "react-leaflet";
+import L from 'leaflet';
 
 const PolygonWithText = (props: any) => {
     const icon = L.divIcon({

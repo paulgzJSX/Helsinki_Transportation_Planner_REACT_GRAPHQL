@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { HeaderWrapper, LogoWrapper, SnowFlakeIcon, NavMenu } from './HeaderElements'
 
-const Header = () => {
+export default function Header() {
     return (
         <HeaderWrapper>
             <LogoWrapper to='/'>
@@ -16,5 +16,3 @@ const Header = () => {
         </HeaderWrapper>
     )
 }
-
-export default Header
