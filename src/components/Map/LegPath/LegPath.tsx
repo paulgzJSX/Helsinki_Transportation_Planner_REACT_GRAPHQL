@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { Polyline, Tooltip, Rectangle, useMap, Polygon, Marker } from "react-leaflet";
+import { Polyline, Tooltip, useMap, Marker } from "react-leaflet";
 import L, { LatLngTuple } from 'leaflet';
 import { Alert } from '@material-ui/lab'
 import CircleMarkerEl from '../CircleMarkerEl'
@@ -15,9 +15,7 @@ const PolygonWithText = (props: any) => {
         className: 'rectangle-icon',
         html: `<div>${props.route}</div>`
     })
-    return (
-        <Marker position={props.center} icon={icon} />
-    )
+    return <Marker position={props.center} icon={icon} />
 }
 
 export default function LegPath({ selectedLeg }: any) {
@@ -47,11 +45,8 @@ export default function LegPath({ selectedLeg }: any) {
             setPoints(points)
             const northWestLat = points[Math.round(points.length / 2)][0] - .0016
             const northWestLon = points[Math.round(points.length / 2)][1] - .005
-            const southEastLat = points[Math.round(points.length / 2)][0] + .001
-            const southEastLon = points[Math.round(points.length / 2)][1] + .007
             setBounds([[northWestLat, northWestLon], [northWestLat, northWestLon]])
             setCenter(points[Math.round(points.length / 2)])
-            // setBounds([points[Math.round(points.length/2)], points[Math.round(points.length/2) - 10]])
         }
     }, [selectedLeg])
 
@@ -61,7 +56,6 @@ export default function LegPath({ selectedLeg }: any) {
             <CircleMarkerEl coords={endPoints} type='arrival' color={pathColor} />
             <PolygonWithText
                 mode={selectedLeg?.mode} route={selectedLeg?.trip?.routeShortName} coords={bounds} center={center} color={pathColor} />
-            {/* <Rectangle bounds={bounds} pathOptions={pathColor} fillOpacity={1} /> */}
             <Polyline weight={4} smoothFactor={1} pathOptions={pathColor} positions={points}>
                 {selectedLeg && <Tooltip>{selectedLeg?.trip?.routeShortName}</Tooltip>}
             </Polyline>

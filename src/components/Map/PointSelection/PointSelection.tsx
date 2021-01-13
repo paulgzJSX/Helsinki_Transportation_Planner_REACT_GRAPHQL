@@ -41,7 +41,7 @@ export default function PointSelection() {
                                 icon={action.icon}
                                 tooltipTitle={action.name}
                                 tooltipPlacement='bottom-start'
-                                onClick={(e) => handleClick(e, action.id)}
+                                onClick={e => handleClick(e, action.id)}
                             />
                         ))}
                     </SpeedDial>
