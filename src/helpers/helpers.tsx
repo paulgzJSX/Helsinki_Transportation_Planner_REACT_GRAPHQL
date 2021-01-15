@@ -2,6 +2,12 @@ export function convertDuration(duration: number): number {
     return Math.floor(duration / 60)
 }
 
+export function convertSeconds(seconds: number): string {
+    let date = new Date(null)
+    date.setSeconds(seconds)
+    return date.toISOString().substr(11, 5)
+}
+
 export function convertTime(timestamp: Date): string {
     const date = new Date(timestamp)
     const hours = ('0' + date.getHours()).substr(-2)

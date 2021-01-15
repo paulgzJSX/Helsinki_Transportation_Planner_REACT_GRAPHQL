@@ -9,21 +9,22 @@ import { LeafletMouseEvent } from 'leaflet';
 
 export default function GetCurrentCoords() {
     const [isButtonFocused, setIsButtonFocused] = useState(false)
-    const { setCoords, allowCoords: { id }, selectedCoords, setSelectedCoords } = useContext(RouteContext)
+    const { state, dispatch} = useContext(RouteContext)
+
     const classes = useCurrentCoordsStyles()
 
-    const { data: location } = useCoords(selectedCoords)
+    const { data: location } = useCoords(state.selectedCoords)
 
     const map = useMapEvent('click', (e: LeafletMouseEvent) => {
         if (!isButtonFocused) {
-            setSelectedCoords({ lat: e.latlng.lat, lng: e.latlng.lng })
+            dispatch({ type: 'SET_SELECTED_COORDS', payload: { lat: e.latlng.lat, lng: e.latlng.lng } })
             map.setView(e.latlng, 15)
         }
     })
 
     const handleClick = () => {
-        setCoords({ id, coords: selectedCoords })
-        setSelectedCoords(null)
+        dispatch({ type: 'SET_COORDS', payload: { id: state.allowCoords.id, coords: state.selectedCoords } })
+        dispatch({ type: 'SET_SELECTED_COORDS', payload: null })
         setIsButtonFocused(false)
     }
 
@@ -35,16 +36,16 @@ export default function GetCurrentCoords() {
                     color="primary"
                     disableElevation
                     focusRipple
-                    disabled={selectedCoords === null}
+                    disabled={state.selectedCoords === null}
                     onClick={handleClick}
                     onFocus={() => setIsButtonFocused(true)}
                     onBlur={() => setIsButtonFocused(true)}
                 >
-                    Confirm {id}
+                    Confirm {state.allowCoords.id}
                 </Button>
             </div>
-            {selectedCoords &&
-                <Marker position={selectedCoords}>
+            {state.selectedCoords &&
+                <Marker position={state.selectedCoords}>
                     {location &&
                         <Tooltip permanent>
                             {location.locality}, {location.neighbourhood} <br />

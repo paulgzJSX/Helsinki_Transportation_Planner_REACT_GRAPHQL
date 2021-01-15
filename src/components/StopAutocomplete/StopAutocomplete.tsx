@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { RouteContext } from '../../context/RouteContext';
 import { useStopsAutocomplete } from '../../hooks/useStopsAutocomplete'
 import { IStopDetails } from '../../interfaces/Interfaces'
 
@@ -23,10 +22,11 @@ const useAutocompleteStyle = makeStyles({
 
 type PropTypes = {
     id: string,
-    setStop: (stop: IStopDetails) => void
+    setStop: (stop: IStopDetails) => void,
+    dispatch: any
 }
 
-export default function StopAutocomplete({ id, setStop }: PropTypes) {
+export default function StopAutocomplete({ id, setStop, dispatch }: PropTypes) {
     const [term, setTerm] = useState('')
     const [options, setOptions] = useState<string[]>([])
     const classes = useAutocompleteStyle();
@@ -46,7 +46,10 @@ export default function StopAutocomplete({ id, setStop }: PropTypes) {
                 blurOnSelect
                 classes={{ input: classes.input, noOptions: classes.noOptions, option: classes.option }}
                 noOptionsText='Type to get locations'
-                onChange={(_, value) => setStop(data?.stops.find((stop: IStopDetails) => stop.name === value))}
+                onChange={(_, value) => {
+                    setStop(data?.stops.find((stop: IStopDetails) => stop.name === value))
+                    dispatch({ type: 'ADD_STOP', payload: data?.stops.find((stop: IStopDetails) => stop.name === value) })
+                }}
                 onInputChange={(_, inputValue) => setTerm(inputValue)}
                 value={term}
                 options={options}

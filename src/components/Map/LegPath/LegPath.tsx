@@ -23,7 +23,8 @@ type PropTypes = {
 }
 
 export default function LegPath({ selectedLeg: { mode, trip: { routeShortName: route }, legGeometry: { points } } }: PropTypes) {
-    const { displayDrawer, setDisplayDrawer } = useContext(RouteContext)
+    const { state, dispatch } = useContext(RouteContext)
+
     const classes = useLegPathsStyles()
     const map = useMap()
 
@@ -55,7 +56,7 @@ export default function LegPath({ selectedLeg: { mode, trip: { routeShortName: r
                     icon={defineIcon(mode)}
                     variant="filled"
                     severity="info"
-                    onClick={() => setDisplayDrawer(!displayDrawer)}
+                    onClick={() => dispatch({ type: 'DISPLAY_DRAWER', payload: !state.displayDrawer })}
                 >
                     {mode} {route}
                 </Alert>

@@ -9,7 +9,7 @@ import { IItinerary } from '../interfaces/Interfaces'
 
 
 export default function SchedulePage() {
-    const { formData } = useContext(RouteContext)
+    const { state: { origin, destination } } = useContext(RouteContext)
     const [fetchItinerary, { loading, data }] = useItinerary()
     const classes = useSchedulePageStyles();
 
@@ -24,7 +24,7 @@ export default function SchedulePage() {
                         color="primary"
                         disableElevation
                         className={classes.button}
-                        onClick={() => formData?.origin && formData?.destination && fetchItinerary()}
+                        onClick={() => origin && destination && fetchItinerary()}
                     >
                         Search routes
                     </Button>

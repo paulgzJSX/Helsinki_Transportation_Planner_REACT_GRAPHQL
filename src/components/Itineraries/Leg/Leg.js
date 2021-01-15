@@ -3,15 +3,18 @@ import { RouteContext } from '../../../context/RouteContext';
 import { LegWrapper, LegStripe, defineIcon } from './LegElements'
 let polyline = require('@mapbox/polyline');
 
-export default function Leg ({ width, mode, routeName, leg }) {
-    const { setSelectedLeg } = useContext(RouteContext)
+export default function Leg({ width, mode, routeName, leg }) {
+    const { dispatch } = useContext(RouteContext)
 
     const handleClick = () => {
         if (leg) {
-            setSelectedLeg({
-                ...leg,
-                legGeometry: {
-                    points: polyline.decode(leg.legGeometry.points)
+            dispatch({
+                type: 'SELECT_LEG',
+                payload: {
+                    ...leg,
+                    legGeometry: {
+                        points: polyline.decode(leg.legGeometry.points)
+                    }
                 }
             })
         }

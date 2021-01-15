@@ -20,7 +20,7 @@ export interface ILocationDetails {
 export interface IFormData {
     origin?: ILocationDetails,
     destination?: ILocationDetails,
-    date?: Date
+    // date?: Date
 }
 
 export interface IRouteContext {
@@ -43,7 +43,9 @@ export interface IRouteContext {
     selectedCoords: ICoordinatesObj,
     setSelectedCoords: Dispatch<SetStateAction<ICoordinatesObj>>,
     displayDrawer: boolean,
-    setDisplayDrawer: Dispatch<SetStateAction<boolean>>
+    setDisplayDrawer: Dispatch<SetStateAction<boolean>>,
+    state: any,
+    dispatch: any
 }
 
 export interface ICoordinates {
@@ -114,6 +116,7 @@ export interface ITrip {
     routeShortName: string,
     stops: IStop[],
     tripHeadsign: string,
+    route: IRoutePerStop,
     __typename: 'Trip'
 }
 
@@ -136,9 +139,38 @@ export interface IStopDetails {
     lat: number,
     lon: number,
     name: string,  
+    vehicleType: number,
+    wheelchairBoarding: string,
+    stoptimesWithoutPatterns: IStoptimesWithoutPattern[],
     zoneId: string,
-    routes?: IRoutePerStop[],
     __typename: 'Stop'
+}
+
+export interface IStoptimesWithoutPattern {
+    scheduledArrival: number,
+    realtimeArrival: number,
+    arrivalDelay: number,
+    scheduledDeparture: number,
+    realtimeDeparture: number,
+    departureDelay: number,
+    realtime: boolean,
+    realtimeState: string,
+    serviceDay: number,
+    headsign: string,
+    trip: ITrip,
+    route: IRoutePerStop
+}
+
+export interface IStopTime {
+    arrivalDelay: number,
+    departureDelay: number,
+    realtimeArrival: number,
+    realtimeDeparture: number,
+    scheduledArrival: number,
+    scheduledDeparture: number,
+    trip: ITrip,
+    headsign: string
+    __typename: 'Stoptime'
 }
 
 export interface IRoutePerStop {

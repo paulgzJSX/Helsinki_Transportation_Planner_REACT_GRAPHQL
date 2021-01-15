@@ -9,7 +9,7 @@ type PropTypes = {
 }
 
 export default function CircleMarkerEl({ coords, type }: PropTypes) {
-    const { selectedLeg: { startTime, mode, endTime, from: { stop: {name: depStop } }, to: { name: arrStop } } } = useContext(RouteContext)
+    const { state: { selectedLeg: { startTime, mode, endTime, from: { stop: {name: depStop } }, to: { name: arrStop } } } } = useContext(RouteContext)
 
     const stop = type === 'departure' ? depStop : arrStop
     const prefix = type === 'departure' ? 'dep.' : 'arr.'

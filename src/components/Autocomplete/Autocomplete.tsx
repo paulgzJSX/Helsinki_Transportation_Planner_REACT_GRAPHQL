@@ -6,6 +6,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { RouteContext } from '../../context/RouteContext';
 import { useAutocompleteStyles } from './useAutocompleteStyles'
 
+
 type PropTypes = {
     id: string
 }
@@ -13,16 +14,16 @@ type PropTypes = {
 export default function InputAutocomplete({ id }: PropTypes) {
     const [term, setTerm] = useState('')
     const [doFetch, setDoFetch] = useState(false)
-    const { setFormData, formData, coords } = useContext(RouteContext)
+    const { dispatch, state } = useContext(RouteContext)
     const classes = useAutocompleteStyles();
 
     const { data: suggestions = [] } = useAutocomplete(doFetch, term)
-    const { data: currentCoordsLocation } = useCoords(coords?.coords)
+    const { data: currentCoordsLocation } = useCoords(state.coords?.coords)
 
     useEffect(() => {
-        if (currentCoordsLocation && coords?.id === id) {
+        if (currentCoordsLocation && state.coords?.id === id) {
             setTerm(currentCoordsLocation?.label)
-            setFormData({ ...formData, [id]: currentCoordsLocation })
+            dispatch({ type: 'ADD_DATA', payload: { [id]: currentCoordsLocation } })
         }
     }, [currentCoordsLocation])
 
@@ -39,11 +40,12 @@ export default function InputAutocomplete({ id }: PropTypes) {
                 blurOnSelect
                 classes={{ input: classes.input, noOptions: classes.noOptions, option: classes.option }}
                 noOptionsText='Type to get locations'
-                onChange={(_, value) => setFormData({
-                    ...formData,
-                    [id]: suggestions.find(suggestion => suggestion.label === value)
-                })
-                }
+                onChange={(_, value) => {
+                    dispatch({
+                        type: 'ADD_DATA',
+                        payload: { [id]: suggestions.find(suggestion => suggestion.label === value) }
+                    })
+                }}
                 onInputChange={(_, inputValue) => setTerm(inputValue)}
                 value={term}
                 options={suggestions && suggestions.map(suggestion => suggestion.label)}

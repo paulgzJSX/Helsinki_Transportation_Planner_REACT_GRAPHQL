@@ -63,16 +63,32 @@ const GET_ITINERARY = gql`
 `;
 
 export const useItinerary = () => {
-  const { formData } = useContext(RouteContext)
+  const { 
+    // formData, 
+    state 
+  } = useContext(RouteContext)
 
-    const from = formData?.origin
-    const to = formData?.destination
+  let fromLat, fromLon, toLat, toLon
 
-    const fromLat = from?.coordinates[1]
-    const fromLon = from?.coordinates[0]
+  if (state.origin && state.destination) {
+    const from = state?.origin
+    const to = state?.destination
 
-    const toLat = to?.coordinates[1]
-    const toLon = to?.coordinates[0]
+    fromLat = from?.coordinates[1]
+    fromLon = from?.coordinates[0]
+
+    toLat = to?.coordinates[1]
+    toLon = to?.coordinates[0]
+  }
+
+    // const from = formData?.origin
+    // const to = formData?.destination
+
+    // const fromLat = from?.coordinates[1]
+    // const fromLon = from?.coordinates[0]
+
+    // const toLat = to?.coordinates[1]
+    // const toLon = to?.coordinates[0]
 
   return useLazyQuery(GET_ITINERARY, {
     variables: { fromLat, fromLon, toLat, toLon }

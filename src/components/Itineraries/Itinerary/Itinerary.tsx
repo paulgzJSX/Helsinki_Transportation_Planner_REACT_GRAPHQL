@@ -7,7 +7,7 @@ type PropTypes = {
     itinerary: IItinerary
 }
 
-export default function Itinerary ({ itinerary: { legs, duration } }: PropTypes) {  
+export default function Itinerary({ itinerary: { legs, duration } }: PropTypes) {
     return (
         <ItineraryWrapper>
             <TimeRow>

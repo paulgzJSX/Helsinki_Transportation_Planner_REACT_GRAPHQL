@@ -16,9 +16,8 @@ let DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-
 export default function Map() {
-    const { selectedLeg, allowCoords } = useContext(RouteContext)
+    const { state: { selectedLeg, allowCoords } } = useContext(RouteContext)
 
     return (
         <div id="mapid">

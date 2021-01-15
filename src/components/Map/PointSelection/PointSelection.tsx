@@ -12,13 +12,13 @@ const actions = [
 
 export default function PointSelection() {
     const [open, setOpen] = useState<boolean>(false)
-    const { setAllowCoords, setSelectedCoords } = useContext(RouteContext)
+    const { dispatch } = useContext(RouteContext)
     const classes = usePointSelectionStyles();
 
     const handleClick = (_: any, id: string) => {
         setOpen(false)
-        setAllowCoords({ id, state: true })
-        setSelectedCoords(null)
+        dispatch({ type: 'ALLOW_COORDS', payload: { id, state: true} })
+        dispatch({ type: 'SET_SELECTED_COORDS', payload: null })
     }
 
     return (

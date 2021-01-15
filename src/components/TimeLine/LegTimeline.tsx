@@ -24,7 +24,7 @@ const defineStopColor = (depStop: string, currStop: string, arrStop: string, idx
 
 export default function LegTimeline({ toggleDrawer }: any) {
     const classes = useTimelineStyles();
-    const { selectedLeg: { from: { stop: { name: depStop } }, to: { name: arrStop }, startTime, endTime, mode, trip } } = useContext(RouteContext)
+    const { state: { selectedLeg: { from: { stop: { name: depStop } }, to: { name: arrStop }, startTime, endTime, mode, trip } } } = useContext(RouteContext)
 
     const stopTime = (stop: string) => {
         return stop === depStop
@@ -43,7 +43,7 @@ export default function LegTimeline({ toggleDrawer }: any) {
                 <Typography variant="h6" gutterBottom>
                     {mode} {trip?.routeShortName}
                 </Typography>
-                {trip?.stops.map((stop, idx) => (
+                {trip?.stops.map((stop: any, idx: number) => (
                     <TimelineItem
                         key={stop.id}
                         classes={{ root: classes.root, missingOppositeContent: classes.missingOppositeContent }}
