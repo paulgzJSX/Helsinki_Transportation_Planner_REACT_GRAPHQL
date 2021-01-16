@@ -27,6 +27,9 @@ function App() {
     }
 }, [state?.origin, state?.destination])
 
+console.log(state);
+
+
   return (
     <ApolloProvider client={client}>
       <QueryClientProvider client={queryClient}>

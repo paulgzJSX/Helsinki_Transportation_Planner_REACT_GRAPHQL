@@ -1,55 +1,39 @@
 import { LatLngTuple } from "leaflet";
-import { Dispatch, SetStateAction } from "react";
 
-export interface ILocation  {
-    coordinates: number[],
+export interface ILocation {
+    coordinates: any,
     id: string,
     label: string,
     locality: string,
     neighbourhood: string,
-    postalCode: string,
-    region: string
+    region: string,
+    postalCode: number
 }
 
-export interface ILocationDetails {
-    coordinates?: any,
-    id: string,
-    label: string
-}
-
-export interface IFormData {
-    origin?: ILocationDetails,
-    destination?: ILocationDetails,
-    // date?: Date
-}
-
-export interface IRouteContext {
-    formData: IFormData,
-    setFormData: Dispatch<SetStateAction<IFormData>>,
-    displayItineraries?: boolean,
-    setDisplayItineraries: Dispatch<SetStateAction<boolean>>,
-    selectedLeg: ILeg,
-    setSelectedLeg: Dispatch<SetStateAction<ILeg>>,
-    coords: {
-        id: string,
-        coords: ICoordinatesObj
-    },
-    setCoords: (coords: {}) => void,
-    allowCoords: {
-        id?: string,
-        state: boolean
-    },
-    setAllowCoords: Dispatch<SetStateAction<any>>,
-    selectedCoords: ICoordinatesObj,
-    setSelectedCoords: Dispatch<SetStateAction<ICoordinatesObj>>,
-    displayDrawer: boolean,
-    setDisplayDrawer: Dispatch<SetStateAction<boolean>>,
-    state: any,
+export interface ICtx {
+    state: IRouteCtx,
     dispatch: any
 }
 
+export interface IRouteCtx {
+    allowCoords: {
+        id: string,
+        state: boolean
+    },
+    coords: {
+        coords: ICoordinatesObj,
+        id: string
+    },
+    destination: ILocation,
+    displayDrawer: boolean,
+    origin: ILocation,
+    selectedCoords: ICoordinatesObj,
+    selectedLeg: ILeg
+}
+
+
 export interface ICoordinates {
-    coordinates: [number, number]
+    coordinates: any
 }
 
 export interface ICoordinatesObj {
@@ -57,8 +41,7 @@ export interface ICoordinatesObj {
     lng: number
 }
 
-export interface ISuggestion {
-    coordinates: ICoordinates,
+export interface ISuggestion extends ICoordinates {
     id: string
     label: string;
 }
@@ -90,18 +73,10 @@ export interface IAgency {
     __typename: 'Agency'
 }
 
-export interface IFrom {
-    lat: number,
-    lon: number,
-    name: string,
-    stop: IStop | null,
-    __typename: 'Place'
-}
-
 export interface ILegGeometry {
     length: number,
     points: LatLngTuple[],
-    __typename: 'Geometry',
+    __typename: 'Geometry'
 }
 
 export interface ITo {
@@ -111,12 +86,17 @@ export interface ITo {
     __typename: 'Place'
 }
 
+export interface IFrom extends ITo {
+    stop: IStop | null,
+    __typename: 'Place'
+}
+
 export interface ITrip {
     gtfsId: string,
     routeShortName: string,
     stops: IStop[],
     tripHeadsign: string,
-    route: IRoutePerStop,
+    route: IRoute,
     __typename: 'Trip'
 }
 
@@ -129,20 +109,11 @@ export interface IStop {
     vehicleMode?: string,
     wheelchairBoarding?: string,
     zoneId: string
-    __typename: 'Stop'
-}
-
-export interface IStopDetails {
-    code: string,
-    desc: string,
     gtfsId: string,
     lat: number,
     lon: number,
-    name: string,  
     vehicleType: number,
-    wheelchairBoarding: string,
-    stoptimesWithoutPatterns: IStoptimesWithoutPattern[],
-    zoneId: string,
+    stoptimesWithoutPatterns: IStoptimesWithoutPattern[]
     __typename: 'Stop'
 }
 
@@ -158,7 +129,7 @@ export interface IStoptimesWithoutPattern {
     serviceDay: number,
     headsign: string,
     trip: ITrip,
-    route: IRoutePerStop
+    route: IRoute
 }
 
 export interface IStopTime {
@@ -173,17 +144,14 @@ export interface IStopTime {
     __typename: 'Stoptime'
 }
 
-export interface IRoutePerStop {
+export interface IRoute {
     shortName: string,
     longName: string,
     bikesAllowed: string,
     mode: string
-}
-
-export interface IRoute {
-    shortName: string,
     __typename: 'Route'
 }
+
 
 export interface ITabPanel {
     children?: React.ReactNode;

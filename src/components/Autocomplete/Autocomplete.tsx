@@ -7,14 +7,10 @@ import { RouteContext } from '../../context/RouteContext';
 import { useAutocompleteStyles } from './useAutocompleteStyles'
 
 
-type PropTypes = {
-    id: string
-}
-
-export default function InputAutocomplete({ id }: PropTypes) {
+export default function InputAutocomplete({ id }: { id: string }) {
     const [term, setTerm] = useState('')
     const [doFetch, setDoFetch] = useState(false)
-    const { dispatch, state } = useContext(RouteContext)
+    const { state, dispatch } = useContext(RouteContext)
     const classes = useAutocompleteStyles();
 
     const { data: suggestions = [] } = useAutocomplete(doFetch, term)

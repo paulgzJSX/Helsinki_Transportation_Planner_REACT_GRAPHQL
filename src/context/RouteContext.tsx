@@ -1,6 +1,5 @@
-import { useState, createContext, useEffect, useReducer } from 'react'
-import { IRouteContext, IFormData, ILeg } from '../interfaces/Interfaces'
+import { createContext } from 'react'
+import { ICtx } from '../interfaces/Interfaces'
 
-
-export const RouteContext = createContext<Partial<IRouteContext>>({})
+export const RouteContext = createContext<Partial<ICtx>>({})
 

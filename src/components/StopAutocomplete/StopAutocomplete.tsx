@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { useStopsAutocomplete } from '../../hooks/useStopsAutocomplete'
-import { IStopDetails } from '../../interfaces/Interfaces'
+import { IStop } from '../../interfaces/Interfaces'
 
 const useAutocompleteStyle = makeStyles({
     input: {
@@ -22,11 +22,10 @@ const useAutocompleteStyle = makeStyles({
 
 type PropTypes = {
     id: string,
-    setStop: (stop: IStopDetails) => void,
     dispatch: any
 }
 
-export default function StopAutocomplete({ id, setStop, dispatch }: PropTypes) {
+export default function StopAutocomplete({ id, dispatch }: PropTypes) {
     const [term, setTerm] = useState('')
     const [options, setOptions] = useState<string[]>([])
     const classes = useAutocompleteStyle();
@@ -34,7 +33,7 @@ export default function StopAutocomplete({ id, setStop, dispatch }: PropTypes) {
     const { data } = useStopsAutocomplete(term)
 
     useEffect(() => {
-        data && setOptions(data.stops.map((stop: IStopDetails) => stop.name))
+        data && setOptions(data.stops.map((stop: IStop) => stop.name))
     }, [data])
 
     return (
@@ -47,8 +46,7 @@ export default function StopAutocomplete({ id, setStop, dispatch }: PropTypes) {
                 classes={{ input: classes.input, noOptions: classes.noOptions, option: classes.option }}
                 noOptionsText='Type to get locations'
                 onChange={(_, value) => {
-                    setStop(data?.stops.find((stop: IStopDetails) => stop.name === value))
-                    dispatch({ type: 'ADD_STOP', payload: data?.stops.find((stop: IStopDetails) => stop.name === value) })
+                    dispatch({ type: 'ADD_STOP', payload: data?.stops.find((stop: IStop) => stop.name === value) })
                 }}
                 onInputChange={(_, inputValue) => setTerm(inputValue)}
                 value={term}

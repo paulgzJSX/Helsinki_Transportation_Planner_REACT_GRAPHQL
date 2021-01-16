@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { convertTime, defineColor } from '../../helpers/helpers'
-import { CircleMarker, Tooltip } from "react-leaflet";
-import { RouteContext } from "../../context/RouteContext";
+import { RouteContext } from "../../context/RouteContext"
+
+import { CircleMarker, Tooltip } from "react-leaflet"
 
 type PropTypes = {
     coords: any,
@@ -9,7 +10,8 @@ type PropTypes = {
 }
 
 export default function CircleMarkerEl({ coords, type }: PropTypes) {
-    const { state: { selectedLeg: { startTime, mode, endTime, from: { stop: {name: depStop } }, to: { name: arrStop } } } } = useContext(RouteContext)
+    const { 
+        state: { selectedLeg: { startTime, mode, endTime, from: { stop: {name: depStop } }, to: { name: arrStop } } } } = useContext(RouteContext)
 
     const stop = type === 'departure' ? depStop : arrStop
     const prefix = type === 'departure' ? 'dep.' : 'arr.'

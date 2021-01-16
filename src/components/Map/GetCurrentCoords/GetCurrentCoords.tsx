@@ -1,31 +1,30 @@
 import { useState, useContext } from 'react'
 import Button from '@material-ui/core/Button';
-import { Marker, Tooltip, useMapEvent } from "react-leaflet"
 import { useCoords } from '../../../hooks/useCoords'
 import { RouteContext } from "../../../context/RouteContext"
 import { useCurrentCoordsStyles } from './useCurrentCoordsStyles'
+
+import { Marker, Tooltip, useMapEvent } from "react-leaflet"
 import { LeafletMouseEvent } from 'leaflet';
 
-
 export default function GetCurrentCoords() {
-    const [isButtonFocused, setIsButtonFocused] = useState(false)
-    const { state, dispatch} = useContext(RouteContext)
-
+    const [isBtnFocused, setIsBtnFocused] = useState(false)
+    const { state: { allowCoords: { id }, selectedCoords }, dispatch } = useContext(RouteContext)
     const classes = useCurrentCoordsStyles()
 
-    const { data: location } = useCoords(state.selectedCoords)
+    const { data: location } = useCoords(selectedCoords)
 
     const map = useMapEvent('click', (e: LeafletMouseEvent) => {
-        if (!isButtonFocused) {
+        if (!isBtnFocused) {
             dispatch({ type: 'SET_SELECTED_COORDS', payload: { lat: e.latlng.lat, lng: e.latlng.lng } })
             map.setView(e.latlng, 15)
         }
     })
 
     const handleClick = () => {
-        dispatch({ type: 'SET_COORDS', payload: { id: state.allowCoords.id, coords: state.selectedCoords } })
+        dispatch({ type: 'SET_COORDS', payload: { id, coords: selectedCoords } })
         dispatch({ type: 'SET_SELECTED_COORDS', payload: null })
-        setIsButtonFocused(false)
+        setIsBtnFocused(false)
     }
 
     return (
@@ -36,16 +35,16 @@ export default function GetCurrentCoords() {
                     color="primary"
                     disableElevation
                     focusRipple
-                    disabled={state.selectedCoords === null}
+                    disabled={selectedCoords === null}
                     onClick={handleClick}
-                    onFocus={() => setIsButtonFocused(true)}
-                    onBlur={() => setIsButtonFocused(true)}
+                    onFocus={() => setIsBtnFocused(true)}
+                    onBlur={() => setIsBtnFocused(true)}
                 >
-                    Confirm {state.allowCoords.id}
+                    Confirm {id}
                 </Button>
             </div>
-            {state.selectedCoords &&
-                <Marker position={state.selectedCoords}>
+            {selectedCoords &&
+                <Marker position={selectedCoords}>
                     {location &&
                         <Tooltip permanent>
                             {location.locality}, {location.neighbourhood} <br />

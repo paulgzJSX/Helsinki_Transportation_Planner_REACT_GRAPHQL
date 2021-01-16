@@ -63,10 +63,7 @@ const GET_ITINERARY = gql`
 `;
 
 export const useItinerary = () => {
-  const { 
-    // formData, 
-    state 
-  } = useContext(RouteContext)
+  const { state } = useContext(RouteContext)
 
   let fromLat, fromLon, toLat, toLon
 
@@ -80,15 +77,6 @@ export const useItinerary = () => {
     toLat = to?.coordinates[1]
     toLon = to?.coordinates[0]
   }
-
-    // const from = formData?.origin
-    // const to = formData?.destination
-
-    // const fromLat = from?.coordinates[1]
-    // const fromLon = from?.coordinates[0]
-
-    // const toLat = to?.coordinates[1]
-    // const toLon = to?.coordinates[0]
 
   return useLazyQuery(GET_ITINERARY, {
     variables: { fromLat, fromLon, toLat, toLon }
