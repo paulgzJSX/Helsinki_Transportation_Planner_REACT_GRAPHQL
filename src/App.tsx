@@ -20,15 +20,12 @@ function App() {
 
   useEffect(() => {
     if (!state?.origin || !state?.destination) {
-        dispatch({ type: 'SELECT_LEG', payload: null })
+      dispatch({ type: 'SELECT_LEG', payload: null })
     }
     if (state?.origin && state?.destination) {
-        dispatch({ type: 'ALLOW_COORDS', payload: { state: false } })
+      dispatch({ type: 'ALLOW_COORDS', payload: { state: false } })
     }
-}, [state?.origin, state?.destination])
-
-console.log(state);
-
+  }, [state?.origin, state?.destination])
 
   return (
     <ApolloProvider client={client}>

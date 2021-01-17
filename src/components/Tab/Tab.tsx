@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Paper, Tabs, Tab } from '@material-ui/core'
-import { Map, Stops, TabPanel } from '../../components'
+import { Map, Stops, Routes, TabPanel } from '../../components'
 import { makeStyles } from '@material-ui/core/styles'
 
-const tabs = [<Map />, <Stops />, 'Tab Three']
+const tabs = [<Map />, <Stops />, <Routes />]
 const tabTitles = ['Map', 'Schedule', 'Route']
 
 const useTabStyles = makeStyles({
