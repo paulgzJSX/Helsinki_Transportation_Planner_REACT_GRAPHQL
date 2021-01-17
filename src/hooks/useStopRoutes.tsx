@@ -20,7 +20,7 @@ const GET_STOP_ROUTES = gql`
     }
 `;
 
-export const useStopsAutocomplete = (id: string) => {
+export const useStopsRoutes = (id: string) => {
   return useQuery(GET_STOP_ROUTES, {
     variables: { id }
   })

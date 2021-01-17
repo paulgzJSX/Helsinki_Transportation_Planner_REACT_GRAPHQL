@@ -39,5 +39,5 @@ export function defineColor(mode: string): string {
                     ? '#FF6319'
                     : mode === 'WAIT'
                         ? '#fff'
-                        : 'lightgrey';
+                        : 'lightgrey'
 }

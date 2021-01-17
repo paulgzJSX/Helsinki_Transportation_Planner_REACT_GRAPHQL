@@ -2,6 +2,9 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
 export const useRouteAutocompleteStyles = makeStyles((theme: Theme) =>
     createStyles({
+        root: {
+            width: 500
+        },
         input: {
             fontSize: 13
         },

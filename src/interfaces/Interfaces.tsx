@@ -144,6 +144,30 @@ export interface IStopTime {
     __typename: 'Stoptime'
 }
 
+export interface IPattern {
+    name: string,
+    alerts: IAlert[],
+    stops: IStopPattern[]
+}
+
+export interface IAlert {
+    alertHeaderText: string,
+    alertHeaderTextTranslations: {
+        text: string
+    },
+    alertDescriptionText: string,
+}
+
+export interface IStopPattern {
+    name: string,
+    stopTimesForPattern?: IStopTimesForPattern[]
+}
+
+export interface IStopTimesForPattern {
+    scheduledDeparture?: number,
+    stopSequence?: number
+}
+
 export interface IRoute {
     shortName: string,
     longName: string,

@@ -23,8 +23,8 @@ const defineStopColor = (depStop: string, currStop: string, arrStop: string, idx
 }
 
 export default function LegTimeline({ toggleDrawer }: any) {
-    const classes = useTimelineStyles();
     const { state: { selectedLeg: { from: { stop: { name: depStop } }, to: { name: arrStop }, startTime, endTime, mode, trip } } } = useContext(RouteContext)
+    const classes = useTimelineStyles()
 
     const stopTime = (stop: string) => {
         return stop === depStop

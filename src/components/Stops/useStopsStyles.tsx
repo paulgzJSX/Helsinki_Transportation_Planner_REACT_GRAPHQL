@@ -14,7 +14,13 @@ export const useStopStyles = makeStyles((_: Theme) =>
         },
         container: {
             overflowY: 'scroll',
-            maxHeight: 350
+            maxHeight: 350,
+            margin: '0 auto'
+        },
+        routesContainer: {
+            maxHeight: 300,
+            width: 660,
+            margin: '0 auto'
         },
         row: {
             cursor: 'pointer'
