@@ -1,16 +1,13 @@
 import { useState, useEffect, useContext, memo } from 'react'
+import AutocompleteInput from '../Generic/AutocompleteInput';
 import { useAutocomplete } from '../../hooks/useAutocomplete'
 import { useCoords } from '../../hooks/useCoords';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import { RouteContext } from '../../context/RouteContext';
-import { useAutocompleteStyles } from './useAutocompleteStyles'
 
 export default memo(function InputAutocomplete({ id }: { id: string }) {
     const [term, setTerm] = useState('')
     const [doFetch, setDoFetch] = useState(false)
     const { state: { coords }, dispatch } = useContext(RouteContext)
-    const classes = useAutocompleteStyles();
 
     const { data: suggestions = [] } = useAutocomplete(doFetch, term)
     const { data: currentCoordsLocation } = useCoords(coords?.coords)
@@ -28,32 +25,18 @@ export default memo(function InputAutocomplete({ id }: { id: string }) {
 
     return (
         <div style={{ width: 300 }}>
-            <Autocomplete
-                freeSolo
-                fullWidth
-                selectOnFocus
-                blurOnSelect
-                classes={{ input: classes.input, noOptions: classes.noOptions, option: classes.option }}
-                noOptionsText='Type to get locations'
-                onChange={(_, value) => {
+            <AutocompleteInput 
+                handleChange={(_: any, value: string) => {
                     dispatch({
                         type: 'ADD_DATA',
                         payload: { [id]: suggestions.find(suggestion => suggestion.label === value) }
                     })
                 }}
-                onInputChange={(_, inputValue) => setTerm(inputValue)}
+                handleInputChange={(_: any, inputValue: string) => setTerm(inputValue)}
                 value={term}
                 options={suggestions && suggestions.map(suggestion => suggestion.label)}
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        label={id === 'origin' ? 'Select origin' : 'Select destination'}
-                        size='small'
-                        required
-                        margin="normal"
-                        variant="outlined"
-                    />
-                )}
+                label={id === 'origin' ? 'Select origin' : 'Select destination'}
+                noOptionsText='Type to get locations'
             />
         </div>
     )

@@ -21,14 +21,15 @@ export default function Leg({ width, mode, routeName, leg }) {
     }
 
     return (
-        <> {(mode === 'WALK' || mode === 'WAIT') && width < 5
-            ? null
-            : <LegWrapper width={width} onClick={handleClick}>
-                <LegStripe mode={mode}>
-                    {defineIcon(mode)}
-                    <span>{width > 5 && routeName} {mode === 'WAIT' && 'min'}</span>
-                </LegStripe>
-            </LegWrapper>}
+        <>
+            {(mode === 'WALK' || mode === 'WAIT') && width < 5
+                ? null
+                : <LegWrapper width={width} onClick={handleClick}>
+                    <LegStripe mode={mode}>
+                        {defineIcon(mode)}
+                        <span>{width > 5 && routeName} {mode === 'WAIT' && 'min'}</span>
+                    </LegStripe>
+                </LegWrapper>}
         </>
     )
 }

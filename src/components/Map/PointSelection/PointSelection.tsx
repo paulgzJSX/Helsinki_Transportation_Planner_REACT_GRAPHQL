@@ -3,21 +3,51 @@ import { SpeedDial, SpeedDialIcon, SpeedDialAction } from '@material-ui/lab'
 import RoomIcon from '@material-ui/icons/Room';
 import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
 import { RouteContext } from '../../../context/RouteContext';
-import { usePointSelectionStyles } from './usePointSelectionStyles'
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 const actions = [
     { icon: <NotListedLocationIcon />, name: 'Select destination', id: 'destination' },
     { icon: <RoomIcon />, name: 'Select origin', id: 'origin' },
 ]
 
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            transform: 'translateZ(0px)',
+            flexGrow: 1,
+        },
+        pointSelection: {
+            position: 'absolute',
+            right: '1rem',
+            top: '-.5rem',
+            zIndex: 400
+        },
+        exampleWrapper: {
+            position: 'relative',
+            height: 250,
+        },
+        speedDial: {
+            position: 'absolute',
+            '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
+                top: theme.spacing(2),
+                right: theme.spacing(2),
+            },
+            '&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight': {
+                top: theme.spacing(2),
+                left: theme.spacing(2),
+            },
+        },
+    }),
+)
+
 export default function PointSelection() {
     const [open, setOpen] = useState<boolean>(false)
     const { dispatch } = useContext(RouteContext)
-    const classes = usePointSelectionStyles();
+    const classes = useStyles();
 
     const handleClick = (_: any, id: string) => {
         setOpen(false)
-        dispatch({ type: 'ALLOW_COORDS', payload: { id, state: true} })
+        dispatch({ type: 'ALLOW_COORDS', payload: { id, state: true } })
         dispatch({ type: 'SET_SELECTED_COORDS', payload: null })
     }
 

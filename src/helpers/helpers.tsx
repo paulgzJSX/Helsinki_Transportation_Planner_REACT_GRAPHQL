@@ -1,3 +1,20 @@
+let tripStartIdx: number;
+
+export const isRouteStop = (depStop: string, currStop: string, arrStop: string, idx: number) => {
+    if (currStop === depStop) {
+        tripStartIdx = idx
+        return true
+    } else if (idx >= tripStartIdx && currStop !== arrStop) {
+        return true
+    } else if (currStop === arrStop) {
+        tripStartIdx = undefined
+        return true
+    }
+    if (!tripStartIdx) {
+        return false
+    }
+}
+
 export function convertDuration(duration: number): number {
     return Math.floor(duration / 60)
 }

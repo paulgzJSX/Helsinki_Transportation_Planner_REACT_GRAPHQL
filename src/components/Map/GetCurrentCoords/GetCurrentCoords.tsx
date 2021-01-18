@@ -1,16 +1,27 @@
 import { useState, useContext } from 'react'
-import Button from '@material-ui/core/Button';
+import { Button, makeStyles, createStyles, Theme } from '@material-ui/core';
 import { useCoords } from '../../../hooks/useCoords'
 import { RouteContext } from "../../../context/RouteContext"
-import { useCurrentCoordsStyles } from './useCurrentCoordsStyles'
 
 import { Marker, Tooltip, useMapEvent } from "react-leaflet"
 import { LeafletMouseEvent } from 'leaflet';
 
+const useStyles = makeStyles((_: Theme) => 
+    createStyles({
+        confirmationButton: {
+            position: 'absolute',
+            bottom: '4rem',
+            zIndex: 400,
+            left: '50%',
+            transform: 'translateX(-50%)'
+        }
+    })
+)
+
 export default function GetCurrentCoords() {
     const [isBtnFocused, setIsBtnFocused] = useState(false)
     const { state: { allowCoords: { id }, selectedCoords }, dispatch } = useContext(RouteContext)
-    const classes = useCurrentCoordsStyles()
+    const classes = useStyles()
 
     const { data: location } = useCoords(selectedCoords)
 

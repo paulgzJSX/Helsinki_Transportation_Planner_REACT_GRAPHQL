@@ -3,7 +3,6 @@ import { convertDuration, convertTime, getMinutes, defineWidth } from '../../../
 import { DepArrTime, DepartureRow, Duration, ItineraryWrapper, LegsRow, TimeRow } from './ItineraryElements'
 import { IItinerary, ILeg } from '../../../interfaces/Interfaces'
 
-
 export default function Itinerary({ itinerary: { legs, duration } }: { itinerary: IItinerary }) {
     return (
         <ItineraryWrapper>

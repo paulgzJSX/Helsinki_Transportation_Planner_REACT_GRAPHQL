@@ -4,11 +4,23 @@ import CircleMarkerEl from '../CircleMarkerEl'
 import { defineColor } from '../../../helpers/helpers'
 import { defineIcon } from '../../Itineraries/Leg/LegElements'
 import { RouteContext } from '../../../context/RouteContext'
-import { useLegPathsStyles } from './useLegPathStyles'
 import { ILeg } from '../../../interfaces/Interfaces'
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
-import { Polyline, Tooltip, useMap, Marker } from "react-leaflet";
+import { Polyline, Tooltip, useMap, Marker } from "react-leaflet"
 import L from 'leaflet';
+
+const useStyles = makeStyles((_: Theme) =>
+    createStyles({
+        legInfo: {
+            position: 'absolute',
+            bottom: '2.4rem',
+            zIndex: 3000,
+            opacity: .8,
+            cursor: 'pointer'
+        }
+    })
+)
 
 const PolygonWithText = (props: any) => {
     const icon = L.divIcon({
@@ -18,14 +30,20 @@ const PolygonWithText = (props: any) => {
     return <Marker position={props.center} icon={icon} />
 }
 
-type PropTypes = {
-    selectedLeg: ILeg
-}
-
-export default memo(function LegPath({ selectedLeg: { mode, trip: { routeShortName: route }, legGeometry: { points } } }: PropTypes) {
+export default memo(function LegPath(props: { selectedLeg: ILeg }) {
+    const {
+        selectedLeg: {
+            mode,
+            trip: {
+                routeShortName: route
+            },
+            legGeometry: {
+                points
+            }
+        }
+    }: { selectedLeg: ILeg } = props
     const { state, dispatch } = useContext(RouteContext)
-
-    const classes = useLegPathsStyles()
+    const classes = useStyles()
     const map = useMap()
 
     const startPoint = points[0]

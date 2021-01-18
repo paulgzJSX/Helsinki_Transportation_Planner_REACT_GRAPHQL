@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import AutocompleteInput from '../Generic/AutocompleteInput'
 import { useStopsAutocomplete } from '../../hooks/useStopsAutocomplete'
-import { useStopsAutocompleteStyles } from './useAutocompleteStyles'
 import { IStop } from '../../interfaces/Interfaces'
 
 type PropTypes = {
@@ -13,7 +11,6 @@ type PropTypes = {
 export default function StopAutocomplete({ id, dispatch }: PropTypes) {
     const [term, setTerm] = useState('')
     const [options, setOptions] = useState<string[]>([])
-    const classes = useStopsAutocompleteStyles();
 
     const { data } = useStopsAutocomplete(term)
 
@@ -23,29 +20,15 @@ export default function StopAutocomplete({ id, dispatch }: PropTypes) {
 
     return (
         <div style={{ width: 300 }}>
-            <Autocomplete
-                freeSolo
-                fullWidth
-                selectOnFocus
-                blurOnSelect
-                classes={{ input: classes.input, noOptions: classes.noOptions, option: classes.option }}
-                noOptionsText='Type to get locations'
-                onChange={(_, value) => {
+             <AutocompleteInput 
+                handleChange={(_: any, value: string) => {
                     dispatch({ type: 'ADD_STOP', payload: data?.stops.find((stop: IStop) => stop.name === value) })
                 }}
-                onInputChange={(_, inputValue) => setTerm(inputValue)}
+                handleInputChange={(_: any, inputValue: string) => setTerm(inputValue)}
                 value={term}
                 options={options}
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        label={id}
-                        size='small'
-                        required
-                        margin="normal"
-                        variant="outlined"
-                    />
-                )}
+                label={id}
+                noOptionsText='Type to get locations'
             />
         </div>
     );
