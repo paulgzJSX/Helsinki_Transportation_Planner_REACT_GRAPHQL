@@ -1,4 +1,4 @@
-import { gql, useQuery } from '@apollo/client'
+import { gql, useLazyQuery } from '@apollo/client'
 
 const GET_ROUTES = gql`
   query GetRoutes ($name: String!, $mode: String!) {
@@ -18,8 +18,8 @@ const GET_ROUTES = gql`
   }
 `
 
-export const useRouteAutocomplete = (name: string, mode: string ) => {
-  return useQuery(GET_ROUTES, {
+export const useRouteAutocomplete = (name: string, mode: string ) => { 
+  return useLazyQuery(GET_ROUTES, {
     variables: { name, mode }
   })
 }

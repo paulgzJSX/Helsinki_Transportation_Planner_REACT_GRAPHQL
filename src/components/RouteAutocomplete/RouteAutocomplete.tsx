@@ -22,7 +22,13 @@ export default function RouteAutocomplete({ dispatch }: any) {
     const [mode, setMode] = useState(null)
     const classes = useRouteAutocompleteStyles()
 
-    const { data } = useRouteAutocomplete(term, mode)
+    const [fetchRoutes, { data }] = useRouteAutocomplete(term, mode)
+
+    useEffect(() => {
+        if (mode !== null && term !== null) {
+            fetchRoutes()
+        }
+    }, [mode])
 
     useEffect(() => {
         data && setOptions([...data.routes]
@@ -33,8 +39,8 @@ export default function RouteAutocomplete({ dispatch }: any) {
 
     const handleChange = (_: any, newValue: string) => {
         setMode(newValue)
-        dispatch({ type: 'ADD_ROUTE', payload: null })
         setTerm('')
+        dispatch({ type: 'ADD_ROUTE', payload: null })
     }
 
     return (
@@ -47,40 +53,39 @@ export default function RouteAutocomplete({ dispatch }: any) {
             >
                 {navActions.map(action =>
                     <BottomNavigationAction
+                        key={action.value}
                         value={action.value.toUpperCase()}
                         label={action.value}
                         icon={action.icon} />)}
             </BottomNavigation>
-            <div style={{ width: 400 }}>
-                <Autocomplete
-                    freeSolo
-                    fullWidth
-                    selectOnFocus
-                    blurOnSelect
-                    classes={{ input: classes.input, noOptions: classes.noOptions, option: classes.option }}
-                    noOptionsText='Type to get locations'
-                    onChange={(_, value) => {
-                        dispatch({
-                            type: 'ADD_ROUTE',
-                            payload: data?.routes.find((route: IRoute) => route.shortName + ' ' + route.longName === value)
-                        })
-                    }}
-                    onInputChange={(_, inputValue) => setTerm(inputValue)}
-                    value={term}
-                    options={options}
-                    renderInput={(params) => (
-                        <TextField
-                            {...params}
-                            label='Select route'
-                            size='small'
-                            required
-                            margin="normal"
-                            variant="outlined"
-                        />
-                    )
-                    }
-                />
-            </div>
+            {mode &&
+                <div style={{ width: 400 }}>
+                    <Autocomplete
+                        freeSolo
+                        fullWidth
+                        selectOnFocus
+                        blurOnSelect
+                        classes={{ input: classes.input, noOptions: classes.noOptions, option: classes.option }}
+                        noOptionsText='Type to get locations'
+                        onChange={(_, value) => {
+                            const selectedRoute = data?.routes.find((route: IRoute) => route.shortName + ' ' + route.longName === value)
+                            dispatch({ type: 'ADD_ROUTE', payload: selectedRoute })
+                        }}
+                        onInputChange={(_, inputValue) => setTerm(inputValue)}
+                        value={term}
+                        options={options}
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                label='Select route'
+                                size='small'
+                                required
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        )}
+                    />
+                </div>}
         </>
-    );
+    )
 }

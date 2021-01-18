@@ -12,7 +12,7 @@ const useTabStyles = makeStyles({
     },
 })
 
-export default function CenteredTabs() {
+export default function TabHeader() {
     const [value, setValue] = useState(0)
     const classes = useTabStyles()
 

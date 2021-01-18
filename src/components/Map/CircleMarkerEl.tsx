@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import { convertTime, defineColor } from '../../helpers/helpers'
 import { RouteContext } from "../../context/RouteContext"
 
@@ -9,7 +9,7 @@ type PropTypes = {
     type: string
 }
 
-export default function CircleMarkerEl({ coords, type }: PropTypes) {
+export default memo(function CircleMarkerEl({ coords, type }: PropTypes) {
     const { 
         state: { selectedLeg: { startTime, mode, endTime, from: { stop: {name: depStop } }, to: { name: arrStop } } } } = useContext(RouteContext)
 
@@ -26,5 +26,5 @@ export default function CircleMarkerEl({ coords, type }: PropTypes) {
             </Tooltip>
         </CircleMarker>
     )
-}
+})
 

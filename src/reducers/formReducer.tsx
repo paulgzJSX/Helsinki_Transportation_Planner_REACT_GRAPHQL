@@ -15,8 +15,6 @@ export const initialState = {
 }
 
 export const formReducer = (state: any, action: any) => {
-    console.log(action);
-
     switch (action.type) {
         case 'ADD_DATA':
             const prop = String(Object.keys(action.payload))

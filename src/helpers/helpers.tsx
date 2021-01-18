@@ -8,6 +8,10 @@ export function convertSeconds(seconds: number): string {
     return date.toISOString().substr(11, 5)
 }
 
+export function defineDeparture(time: number) {
+    return time ? convertSeconds(time) : 'no data'
+  }
+
 export function convertTime(timestamp: Date): string {
     const date = new Date(timestamp)
     const hours = ('0' + date.getHours()).substr(-2)

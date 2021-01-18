@@ -1,7 +1,7 @@
-import { gql, useQuery } from '@apollo/client'
+import { gql, useLazyQuery } from '@apollo/client'
 
 const GET_STOPS_BY_PATTERN = gql`
-  query GetRoutes ($id: String!) {
+  query GetStopsByPattern ($id: String!) {
     pattern(id: $id) {
         name
         alerts {
@@ -23,7 +23,7 @@ const GET_STOPS_BY_PATTERN = gql`
 `
 
 export const useStopsByPattern = (id: string) => {
-    return useQuery(GET_STOPS_BY_PATTERN, {
+    return useLazyQuery(GET_STOPS_BY_PATTERN, {
         variables: { id }
     })
 }

@@ -21,7 +21,7 @@ export default function Leg({ width, mode, routeName, leg }) {
     }
 
     return (
-        <> {mode === 'WALK' || mode === 'WAIT' && width < 5
+        <> {(mode === 'WALK' || mode === 'WAIT') && width < 5
             ? null
             : <LegWrapper width={width} onClick={handleClick}>
                 <LegStripe mode={mode}>

@@ -4,7 +4,7 @@ import { Drawer } from '@material-ui/core/'
 import { RouteContext } from '../../context/RouteContext'
 
 export default function LegDrawer() {
-    const { dispatch, state } = useContext(RouteContext)
+    const { dispatch, state: { displayDrawer } } = useContext(RouteContext)
 
     const toggleDrawer = useCallback((open: boolean) => (e: KeyboardEvent | MouseEvent) => {
         if (e.type === 'keydown' &&
@@ -18,7 +18,7 @@ export default function LegDrawer() {
     return (
         <Drawer
             anchor={'right'}
-            open={state.displayDrawer}
+            open={displayDrawer}
             onClose={toggleDrawer(false)}
             transitionDuration={400}
         >

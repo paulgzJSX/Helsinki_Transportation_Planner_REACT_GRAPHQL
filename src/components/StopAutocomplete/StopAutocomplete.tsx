@@ -1,24 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import { useState, useEffect } from 'react'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { useStopsAutocomplete } from '../../hooks/useStopsAutocomplete'
+import { useStopsAutocompleteStyles } from './useAutocompleteStyles'
 import { IStop } from '../../interfaces/Interfaces'
-
-const useAutocompleteStyle = makeStyles({
-    input: {
-        fontSize: 13
-    },
-    noOptions: {
-        fontSize: 13
-    },
-    option: {
-        fontSize: 13
-    },
-    tag: {
-        fontSize: 13
-    }
-})
 
 type PropTypes = {
     id: string,
@@ -28,7 +13,7 @@ type PropTypes = {
 export default function StopAutocomplete({ id, dispatch }: PropTypes) {
     const [term, setTerm] = useState('')
     const [options, setOptions] = useState<string[]>([])
-    const classes = useAutocompleteStyle();
+    const classes = useStopsAutocompleteStyles();
 
     const { data } = useStopsAutocomplete(term)
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, memo } from 'react'
 import { useAutocomplete } from '../../hooks/useAutocomplete'
 import { useCoords } from '../../hooks/useCoords';
 import TextField from '@material-ui/core/TextField';
@@ -6,18 +6,17 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { RouteContext } from '../../context/RouteContext';
 import { useAutocompleteStyles } from './useAutocompleteStyles'
 
-
-export default function InputAutocomplete({ id }: { id: string }) {
+export default memo(function InputAutocomplete({ id }: { id: string }) {
     const [term, setTerm] = useState('')
     const [doFetch, setDoFetch] = useState(false)
-    const { state, dispatch } = useContext(RouteContext)
+    const { state: { coords }, dispatch } = useContext(RouteContext)
     const classes = useAutocompleteStyles();
 
     const { data: suggestions = [] } = useAutocomplete(doFetch, term)
-    const { data: currentCoordsLocation } = useCoords(state.coords?.coords)
+    const { data: currentCoordsLocation } = useCoords(coords?.coords)
 
     useEffect(() => {
-        if (currentCoordsLocation && state.coords?.id === id) {
+        if (currentCoordsLocation && coords?.id === id) {
             setTerm(currentCoordsLocation?.label)
             dispatch({ type: 'ADD_DATA', payload: { [id]: currentCoordsLocation } })
         }
@@ -58,4 +57,4 @@ export default function InputAutocomplete({ id }: { id: string }) {
             />
         </div>
     )
-}
+})

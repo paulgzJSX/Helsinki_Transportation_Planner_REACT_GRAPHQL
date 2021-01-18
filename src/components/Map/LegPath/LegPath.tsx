@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, memo } from 'react'
 import { Alert } from '@material-ui/lab'
 import CircleMarkerEl from '../CircleMarkerEl'
 import { defineColor } from '../../../helpers/helpers'
@@ -22,7 +22,7 @@ type PropTypes = {
     selectedLeg: ILeg
 }
 
-export default function LegPath({ selectedLeg: { mode, trip: { routeShortName: route }, legGeometry: { points } } }: PropTypes) {
+export default memo(function LegPath({ selectedLeg: { mode, trip: { routeShortName: route }, legGeometry: { points } } }: PropTypes) {
     const { state, dispatch } = useContext(RouteContext)
 
     const classes = useLegPathsStyles()
@@ -63,4 +63,4 @@ export default function LegPath({ selectedLeg: { mode, trip: { routeShortName: r
             </div>
         </>
     )
-}
+})
