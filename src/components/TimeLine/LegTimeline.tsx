@@ -1,8 +1,8 @@
 import { useContext } from 'react'
-import LegTimeLineItem from './LegTimeLineItem'
+import { LegTimelineItem } from '../../components'
 import { Typography, makeStyles, createStyles, Theme } from '@material-ui/core/'
 import { Timeline } from '@material-ui/lab'
-import { RouteContext } from '../../context/RouteContext'
+import { RouteContext } from '../../App'
 
 const useStyles = makeStyles((_: Theme) =>
     createStyles({
@@ -30,7 +30,7 @@ export default function LegTimeline({ toggleDrawer }: any) {
                     {mode} {trip?.routeShortName}
                 </Typography>
                 {trip?.stops.map((stop: any, idx: number) =>
-                    <LegTimeLineItem key={stop.id} stop={stop} idx={idx} />)}
+                    <LegTimelineItem key={stop.id} stop={stop} idx={idx} />)}
             </Timeline>
         </div>
     )

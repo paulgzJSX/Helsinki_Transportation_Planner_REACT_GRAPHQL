@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { RouteContext } from '../../../context/RouteContext';
-import { LegWrapper, LegStripe, defineIcon } from './LegElements'
+import { RouteContext } from '../../App'
+import { LegWrapper, LegStripe, defineIcon } from '../../styles/LegElements'
 let polyline = require('@mapbox/polyline');
 
 export default function Leg({ width, mode, routeName, leg }) {

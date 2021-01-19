@@ -1,7 +1,7 @@
-import Leg from '../Leg/Leg'
-import { convertDuration, convertTime, getMinutes, defineWidth } from '../../../helpers/helpers'
-import { DepArrTime, DepartureRow, Duration, ItineraryWrapper, LegsRow, TimeRow } from './ItineraryElements'
-import { IItinerary, ILeg } from '../../../interfaces/Interfaces'
+import { Leg } from '../../components'
+import { convertDuration, convertTime, getMinutes, defineWidth } from '../../helpers/helpers'
+import { DepArrTime, DepartureRow, Duration, ItineraryWrapper, LegsRow, TimeRow } from '../../styles/ItineraryElements'
+import { IItinerary, ILeg } from '../../interfaces/Interfaces'
 
 export default function Itinerary({ itinerary: { legs, duration } }: { itinerary: IItinerary }) {
     return (

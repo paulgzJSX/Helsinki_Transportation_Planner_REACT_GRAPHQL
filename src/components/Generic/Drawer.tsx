@@ -1,7 +1,7 @@
 import { useContext, useCallback } from 'react'
-import LegTimeline from '../TimeLine/LegTimeline'
+import { LegTimeline } from '../../components'
 import { Drawer } from '@material-ui/core/'
-import { RouteContext } from '../../context/RouteContext'
+import { RouteContext } from '../../App'
 
 export default function LegDrawer() {
     const { dispatch, state: { displayDrawer } } = useContext(RouteContext)

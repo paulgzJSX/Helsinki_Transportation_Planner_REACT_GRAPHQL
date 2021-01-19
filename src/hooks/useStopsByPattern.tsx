@@ -21,9 +21,8 @@ const GET_STOPS_BY_PATTERN = gql`
       }
   }
 `
-
 export const useStopsByPattern = (id: string) => {
-    return useLazyQuery(GET_STOPS_BY_PATTERN, {
-        variables: { id }
-    })
+  return useLazyQuery(GET_STOPS_BY_PATTERN, {
+    variables: { id }
+  })
 }

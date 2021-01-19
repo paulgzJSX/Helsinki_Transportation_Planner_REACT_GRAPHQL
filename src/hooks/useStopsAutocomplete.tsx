@@ -37,8 +37,7 @@ const GET_STOPS = gql`
     }
     }
   }
-`;
-
+`
 export const useStopsAutocomplete = (name: string) => {
   return useQuery(GET_STOPS, {
     variables: { name }

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { HeaderWrapper, LogoWrapper, SnowFlakeIcon, NavMenu } from './HeaderElements'
+import { HeaderWrapper, LogoWrapper, SnowFlakeIcon, NavMenu } from '../../styles/HeaderElements'
 
 export default function Header() {
     return (

@@ -1,14 +1,9 @@
 import { useState, useEffect } from 'react'
-import AutocompleteInput from '../Generic/AutocompleteInput'
-import { useStopsAutocomplete } from '../../hooks/useStopsAutocomplete'
-import { IStop } from '../../interfaces/Interfaces'
+import { Autocomplete }  from '../../../components'
+import { useStopsAutocomplete } from '../../../hooks/useStopsAutocomplete'
+import { IStop } from '../../../interfaces/Interfaces'
 
-type PropTypes = {
-    id: string,
-    dispatch: any
-}
-
-export default function StopAutocomplete({ id, dispatch }: PropTypes) {
+export default function StopAutocomplete({ id, dispatch }: { id: string, dispatch: any }) {
     const [term, setTerm] = useState('')
     const [options, setOptions] = useState<string[]>([])
 
@@ -18,12 +13,17 @@ export default function StopAutocomplete({ id, dispatch }: PropTypes) {
         data && setOptions(data.stops.map((stop: IStop) => stop.name))
     }, [data])
 
+    const handleChange = (_: any, value: string) => {
+        dispatch({ 
+            type: 'ADD_STOP', 
+            payload: data?.stops.find((stop: IStop) => stop.name === value) 
+        })
+    }
+
     return (
         <div style={{ width: 300 }}>
-             <AutocompleteInput 
-                handleChange={(_: any, value: string) => {
-                    dispatch({ type: 'ADD_STOP', payload: data?.stops.find((stop: IStop) => stop.name === value) })
-                }}
+             <Autocomplete
+                handleChange={handleChange}
                 handleInputChange={(_: any, inputValue: string) => setTerm(inputValue)}
                 value={term}
                 options={options}

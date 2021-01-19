@@ -1,6 +1,6 @@
 import { gql, useLazyQuery } from '@apollo/client'
 import { useContext } from 'react'
-import { RouteContext } from '../context/RouteContext'
+import { RouteContext } from '../App'
 
 const GET_ITINERARY = gql`
   query GetItinerary ($fromLat: Float!, $fromLon: Float!, $toLat: Float!, $toLon: Float!) {
@@ -60,8 +60,7 @@ const GET_ITINERARY = gql`
       }
     }
   }
-`;
-
+`
 export const useItinerary = () => {
   const { state } = useContext(RouteContext)
 

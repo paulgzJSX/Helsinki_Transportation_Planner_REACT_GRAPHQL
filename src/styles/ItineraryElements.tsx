@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-
 export const ItineraryWrapper = styled.div`
     margin-bottom: .5rem;
     cursor: pointer;

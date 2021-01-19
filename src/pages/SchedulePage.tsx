@@ -1,49 +1,29 @@
-import { useContext } from 'react'
-import { InputAutocomplete, Tab, Drawer, Itinerary } from '../components'
-import { Button, CircularProgress } from '@material-ui/core';
-import { useItinerary } from '../hooks/useItinerary'
-import { RouteContext } from '../context/RouteContext'
-import { ItinerariesWrapper } from '../components/Itineraries/Itinerary/ItineraryElements'
-import { useSchedulePageStyles } from './useSchedulePageStyles'
-import { IItinerary } from '../interfaces/Interfaces'
+import { Drawer, LeftPanel, RightPanel } from '../components'
+import { makeStyles, createStyles, Theme } from '@material-ui/core'
 
+const useStyles = makeStyles((_: Theme) =>
+    createStyles({
+        wrapper: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            borderRadius: '10px',
+            overflow: 'hidden',
+            height: '80vh',
+            width: '90vw',
+            margin: '0 auto'
+        }
+    })
+)
 
 export default function SchedulePage() {
-    const { state: { origin, destination } } = useContext(RouteContext)
-    const [fetchItinerary, { loading, data }] = useItinerary()
-    const classes = useSchedulePageStyles();
+    const classes = useStyles();
 
     return (
-        <div>
-            <div className={classes.mapWrapper}>
-                <div className={classes.left}>
-                    <InputAutocomplete id='origin' />
-                    <InputAutocomplete id='destination' />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        disableElevation
-                        className={classes.button}
-                        onClick={() => origin && destination && fetchItinerary()}
-                    >
-                        Search routes
-                    </Button>
-                    {loading
-                        ? <CircularProgress style={{ marginTop: '7rem' }} />
-                        : data &&
-                        <ItinerariesWrapper>
-                            {data?.plan.itineraries.map((itinerary: IItinerary, idx: number) =>
-                                <Itinerary key={idx} itinerary={itinerary} />)}
-                        </ItinerariesWrapper>
-                    }
-                </div>
-                <div className={classes.right}>
-                    <div className={classes.upperRight}>
-                        <Tab />
-                    </div>
-                </div>
-                <Drawer />
-            </div>
+        <div className={classes.wrapper}>
+            <LeftPanel />
+            <RightPanel />
+            <Drawer />
         </div>
     )
 }

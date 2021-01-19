@@ -17,7 +17,6 @@ const GET_ROUTES = gql`
     }
   }
 `
-
 export const useRouteAutocomplete = (name: string, mode: string ) => { 
   return useLazyQuery(GET_ROUTES, {
     variables: { name, mode }

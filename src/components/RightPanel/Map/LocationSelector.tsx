@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import { Button, makeStyles, createStyles, Theme } from '@material-ui/core';
 import { useCoords } from '../../../hooks/useCoords'
-import { RouteContext } from "../../../context/RouteContext"
+import { RouteContext } from '../../../App'
 
 import { Marker, Tooltip, useMapEvent } from "react-leaflet"
 import { LeafletMouseEvent } from 'leaflet';
@@ -18,7 +18,7 @@ const useStyles = makeStyles((_: Theme) =>
     })
 )
 
-export default function GetCurrentCoords() {
+export default function LocationSelector() {
     const [isBtnFocused, setIsBtnFocused] = useState(false)
     const { state: { allowCoords: { id }, selectedCoords }, dispatch } = useContext(RouteContext)
     const classes = useStyles()

@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@material-ui/lab'
 import { Box, makeStyles, createStyles, Theme } from '@material-ui/core/';
 import { convertTime, isRouteStop } from '../../helpers/helpers'
-import { RouteContext } from '../../context/RouteContext'
+import { RouteContext } from '../../App'
 
 const useStyles = makeStyles((_: Theme) =>
     createStyles({

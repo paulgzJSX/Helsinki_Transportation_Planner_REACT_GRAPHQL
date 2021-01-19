@@ -1,11 +1,11 @@
 import { useEffect, useContext, memo } from 'react'
+import { LocationTooltip } from '../../../components'
 import { Alert } from '@material-ui/lab'
-import CircleMarkerEl from '../CircleMarkerEl'
-import { defineColor } from '../../../helpers/helpers'
-import { defineIcon } from '../../Itineraries/Leg/LegElements'
-import { RouteContext } from '../../../context/RouteContext'
-import { ILeg } from '../../../interfaces/Interfaces'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+import { defineColor } from '../../../helpers/helpers'
+import { RouteContext } from '../../../App'
+import { defineIcon } from '../../../styles/LegElements'
+import { ILeg } from '../../../interfaces/Interfaces'
 
 import { Polyline, Tooltip, useMap, Marker } from "react-leaflet"
 import L from 'leaflet';
@@ -56,8 +56,8 @@ export default memo(function LegPath(props: { selectedLeg: ILeg }) {
 
     return (
         <>
-            <CircleMarkerEl coords={startPoint} type='departure' />
-            <CircleMarkerEl coords={endPoint} type='arrival' />
+            <LocationTooltip coords={startPoint} type='departure' />
+            <LocationTooltip coords={endPoint} type='arrival' />
             <PolygonWithText route={route} center={centerPoint} />
             {points &&
                 <Polyline

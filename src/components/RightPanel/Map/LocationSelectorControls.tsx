@@ -1,9 +1,9 @@
 import { useState, useContext } from 'react'
 import { SpeedDial, SpeedDialIcon, SpeedDialAction } from '@material-ui/lab'
 import RoomIcon from '@material-ui/icons/Room';
-import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
-import { RouteContext } from '../../../context/RouteContext';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import NotListedLocationIcon from '@material-ui/icons/NotListedLocation'
+import { RouteContext } from '../../../App'
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
 const actions = [
     { icon: <NotListedLocationIcon />, name: 'Select destination', id: 'destination' },
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
             top: '-.5rem',
             zIndex: 400
         },
-        exampleWrapper: {
+        speedDialWrapper: {
             position: 'relative',
             height: 250,
         },
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 )
 
-export default function PointSelection() {
+export default function LocationSelectorControls() {
     const [open, setOpen] = useState<boolean>(false)
     const { dispatch } = useContext(RouteContext)
     const classes = useStyles();
@@ -54,7 +54,7 @@ export default function PointSelection() {
     return (
         <div className={classes.pointSelection}>
             <div className={classes.root}>
-                <div className={classes.exampleWrapper}>
+                <div className={classes.speedDialWrapper}>
                     <SpeedDial
                         ariaLabel="Coordinate Selection"
                         className={classes.speedDial}
